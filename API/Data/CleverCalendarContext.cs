@@ -7,4 +7,6 @@ namespace API.Data;
 public class CleverCalendarContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Event> Events { get; set; }
+
+    public DbSet<User> Users { get; set; }
 }
