@@ -6,9 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class UsersController(CleverCalendarContext context) : ControllerBase
+public class UsersController(CleverCalendarContext context) : BaseApiController
 {
     // Write logic 
 
