@@ -12,9 +12,6 @@ builder.Services.AddDbContext<CleverCalendarContext>(opt => {
 
 builder.Services.AddCors();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 app.UseHttpsRedirection();
