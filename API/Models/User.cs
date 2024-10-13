@@ -10,9 +10,9 @@ public class User
 
     public string Name { get; set; } = string.Empty;
 
-    public required byte[] PasswordHash { get; set; }
+    public byte[] PasswordHash { get; set; } = [];
 
-    public required byte[] PasswordSalt { get; set; }
+    public byte[] PasswordSalt { get; set; } = [];
 
     public IEnumerable<Event> Events { get; set; } = [];
 }
