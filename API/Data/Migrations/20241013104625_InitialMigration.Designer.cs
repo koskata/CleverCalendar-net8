@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(CleverCalendarContext))]
-    [Migration("20241005165744_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241013104625_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,9 +46,53 @@ namespace API.Data.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("API.Models.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("API.Models.Event", b =>
+                {
+                    b.HasOne("API.Models.User", "User")
+                        .WithMany("Events")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("API.Models.User", b =>
+                {
+                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }
