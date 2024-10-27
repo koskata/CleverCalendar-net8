@@ -7,7 +7,7 @@ Frontend:
 - TypeScript: Strongly-typed language for enhancing JavaScript development.
 - RxJS: Reactive programming for handling asynchronous data streams.
 - SCSS: Preprocessed CSS for better styling and maintainability.
-- 
+  
 Backend:
 - C# (.NET Core): High-performance and cross-platform framework for building server-side logic.
 - ASP.NET Web API: RESTful services for handling frontend requests.
