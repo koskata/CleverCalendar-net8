@@ -2,6 +2,7 @@ CleverCalendar is a powerful and intuitive calendar application inspired by Goog
 This app is built using Angular for the frontend and C# (.NET Core) for the backend, providing a seamless and responsive user experience.
 
 TECHNOLOGIES
+
 Frontend:
 - Angular: A modern framework for building fast and scalable user interfaces.
 - TypeScript: Strongly-typed language for enhancing JavaScript development.
