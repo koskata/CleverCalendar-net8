@@ -1,13 +1,5 @@
 <app-nav></app-nav>
 
 <div class="container" style="margin-top: 6em;">
-
-    <ng-container *ngIf="!accountService.isLoggedIn(); else loggedIn">
-        <app-home></app-home>
-    </ng-container>
-    
-    
-    <ng-template #loggedIn>
-        <router-outlet></router-outlet>
-    </ng-template>
+    <router-outlet></router-outlet>
 </div>
