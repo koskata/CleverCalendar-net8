@@ -1,20 +1,17 @@
-import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
+import { inject, Injectable } from "@angular/core";
+import { CanActivateFn, Router } from "@angular/router";
 import { AccountService } from "../_services/account.service";
+import { ToastrService } from "ngx-toastr";
 
-@Injectable({
-  providedIn: 'root'
-})
+export const authGuard: CanActivateFn = (route, state) => {
+  const accountService = inject(AccountService);
+  const toastr = inject(ToastrService);
 
-export class AuthGuard implements CanActivate {
-  constructor(private accountService: AccountService, private router: Router) {}
-
-  canActivate(): boolean {
-    if (!this.accountService.isLoggedIn) {
+    if (accountService.currentUser()) {
       return true;
     } else {
-      this.router.navigate(['events']);
+      /* this.router.navigate(['events']); */
+      toastr.error('You shall not pass!')
       return false;
     }
-  }
 }
