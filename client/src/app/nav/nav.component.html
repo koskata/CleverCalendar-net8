@@ -1,39 +1,44 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#" style="padding-right: 3em; font-size: 1.6em;">Clever Calendar📆</a>
+        <a class="navbar-brand" routerLink="/" routerLinkActive="active"
+            style="padding-right: 3em; font-size: 1.6em;">Clever Calendar📆</a>
+
+
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            @if (accountService.currentUser()) {
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/events" routerLinkActive="active" style="cursor: pointer;">All
+                    events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/events/schedule" routerLinkActive="active"
+                    style="cursor: pointer;">Schedule an event</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/events/liked" routerLinkActive="active" style="cursor: pointer;">Liked
+                    events</a>
+            </li>
+            }
+        </ul>
 
         @if (accountService.currentUser()) {
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link" style="cursor: pointer;">Schedule an event</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="cursor: pointer;">Liked events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="cursor: pointer;" (click)="logout()">Logout</a>
-                </li>
-            </ul>
-        }
-
-        @if (accountService.currentUser()) {
-            <div dropdown class="dropdown">
-                <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome user</a>
-                <div *dropdownMenu class="dropdown-menu">
-                    <a class="dropdown-item" (click)="logout()">Logout</a>
-                </div>
+        <div dropdown class="dropdown">
+            <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome {{accountService.currentUser()?.name | titlecase}}</a>
+            <div *dropdownMenu class="dropdown-menu">
+                <a style="font-weight: 700;" class="dropdown-item text-center" (click)="logout()">Logout</a>
             </div>
+        </div>
         }
 
         @if (!accountService.currentUser()) {
-            <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
-                <input name="name" [(ngModel)]="model.name" class="form-control me-2" placeholder="Name">
-                <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password"
-                    type="password">
-                <button class="btn btn-outline-success" type="submit">Login</button>
-            </form>
+        <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
+            <input name="name" [(ngModel)]="model.name" class="form-control me-2" placeholder="Name">
+            <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password"
+                type="password">
+            <button class="btn btn-outline-success" type="submit">Login</button>
+        </form>
         }
 
-        
+
     </div>
 </nav>
