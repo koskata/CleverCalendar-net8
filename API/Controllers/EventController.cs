@@ -10,7 +10,6 @@ namespace API.Controllers;
 
 public class EventController (CleverCalendarContext context) : BaseApiController
 {
-    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Event>>> GetEvents() 
     {
@@ -19,5 +18,18 @@ public class EventController (CleverCalendarContext context) : BaseApiController
         return events;
     }
 
-    
+    // Test action
+    [Authorize]
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Event>> GetEvent(int id)
+    {
+        var ev = await context.Events.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (ev == null)
+        {
+            return NotFound();
+        }
+
+        return ev;
+    }
 }
