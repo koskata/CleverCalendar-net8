@@ -27,5 +27,6 @@ public class Event
     [ForeignKey(nameof(UserId))]
     public User User { get; set; } = null!;
 
-    
+    //Adding new property
+    public string? Category { get; set; }
 }
