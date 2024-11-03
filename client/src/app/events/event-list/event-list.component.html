@@ -1,1 +1,24 @@
-<p>event-list works!</p>
+
+<h1 class="text-center currentMonth">{{monthName}}</h1>
+
+<div class="calendar">
+    <!-- Days of the week headers -->
+    <div class="day-header" *ngFor="let day of daysOfWeek">{{ day }}</div>
+  
+    <!-- Display each day in the month, with blanks for alignment -->
+    <div class="day-box" *ngFor="let day of daysInMonth">
+      <ng-container *ngIf="day.date; else blankDay">
+        <div class="date">{{ day.date | date: 'd' }}</div>
+        <div class="events">
+          <!-- Display each event that falls on this day -->
+          <div class="event" *ngFor="let event of getEventsForDay(day.date)">
+            <div class="event-name">{{ event.name }}</div>
+            <div class="event-time">{{ event.start | date: 'short' }} - {{ event.end | date: 'short' }}</div>
+            <div class="event-location">{{ event.location }}</div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- Template for blank day boxes -->
+      <ng-template #blankDay><div class="blank"></div></ng-template>
+    </div>
+  </div>
