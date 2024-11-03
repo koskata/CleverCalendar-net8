@@ -1,11 +1,9 @@
-interface Day {
-  date: Date | null;
-}
 
 import { Component, inject, OnInit } from '@angular/core';
 import { EventsService } from '../../_services/events.service';
 import { Event } from '../../_models/event';
 import { CommonModule } from '@angular/common';
+import { Day } from '../../_models/day';
 
 @Component({
   selector: 'app-event-list',
@@ -23,34 +21,14 @@ export class EventListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvents();
-    this.generateDaysInMonth();
+    this.daysInMonth = this.eventService.generateDaysInMonth();
+    this.monthName = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
   }
 
   loadEvents() {
     this.eventService.getEvents().subscribe({
       next: events => this.events = events
     });
-  }
-
-  generateDaysInMonth() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
-
-    this.monthName = now.toLocaleString('default', { month: 'long', year: 'numeric' });
-
-    const firstDayOfMonth = new Date(year, month, 1);
-    const firstDayOfWeek = firstDayOfMonth.getDay();
-
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    this.daysInMonth = Array.from({ length: firstDayOfWeek }, () => ({
-      date: null
-    }));
-
-    for (let i = 1; i <= daysInMonth; i++) {
-      this.daysInMonth.push({ date: new Date(year, month, i) });
-    }
   }
 
   getEventsForDay(date: Date): Event[] {
