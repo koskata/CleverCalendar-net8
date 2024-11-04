@@ -12,12 +12,14 @@
 }
 
 .day-box {
+    /* max-width: 13em; */
+
     width: 100%;
     max-height: 10.5em;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 8px;
-    min-height: 100px;
+    min-height: 110px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -41,15 +43,16 @@
 }
 
 .event {
-    background-color: #e0f7fa;
     padding: 4px;
     border-radius: 4px;
     margin-bottom: 4px;
 
+    /* max-width: 15em; */
+
     flex: 1 1 auto;
     min-height: 15px;
-    font-size: 0.85em;
-    white-space: nowrap;
+    font-size: 1em;
+    white-space: initial;
     overflow: hidden;
     text-overflow: ellipsis;
     border-bottom: 1px solid #eee;
@@ -63,7 +66,6 @@
 .event-time,
 .event-location {
     font-size: 0.8em;
-    color: #555;
 }
 
 .blank {
