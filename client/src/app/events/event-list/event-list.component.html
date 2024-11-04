@@ -11,10 +11,11 @@
         <div class="date">{{ day.date | date: 'd' }}</div>
         <div class="events">
           <!-- Display each event that falls on this day -->
-          <div class="event" *ngFor="let event of getEventsForDay(day.date)">
-            <div class="event-name">{{ event.name }}</div>
-            <div class="event-time">{{ event.start | date: 'short' }} - {{ event.end | date: 'short' }}</div>
-            <div class="event-location">{{ event.location }}</div>
+          <div class="event" *ngFor="let event of getEventsForDay(day.date)" 
+            [ngStyle]="{ 'background-color': getBackgroundColor(event.categoryId), 'color': getFontColor(event.categoryId) }">
+              <div class="event-name">{{ event.name }}</div>
+              <div class="event-time">{{ event.start | date: 'short' }} - {{ event.end | date: 'short' }}</div>
+              <div class="event-location">{{ event.location }}</div>
           </div>
         </div>
       </ng-container>
