@@ -41,4 +41,30 @@ export class EventListComponent implements OnInit {
       );
     });
   }
+
+  getBackgroundColor(categoryId: number): string {
+    switch (categoryId) {
+      case 1:
+        return '#b387f5';
+      case 2:
+        return '#75c7f2';
+      case 3:
+        return '#eeeb6f';//eeeb6f
+      default:
+        return '#625c5c';
+    }
+  }
+
+  getFontColor(categoryId: number): string {
+    switch (categoryId) {
+      case 1:
+        return '#ffffff';
+      case 2:
+        return '#000000';
+      case 3:
+        return '#000000';//000000
+      default:
+        return '#ffffff';
+    }
+  }
 }
