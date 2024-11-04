@@ -1,4 +1,5 @@
-import { User } from "./user"
+import { User } from "./user";
+import { EventCategory } from "./eventCategory";
 
 export interface Event {
     id: number
@@ -7,5 +8,7 @@ export interface Event {
     end: Date
     location: string
     userId: string
-    user: User
+    user: User,
+    categoryId: number,
+    category: EventCategory
   }
