@@ -28,5 +28,8 @@ public class Event
     public User User { get; set; } = null!;
 
     //Adding new property
-    public string? Category { get; set; }
+    public int CategoryId { get; set; }
+
+    [ForeignKey(nameof(CategoryId))]
+    public EventCategory Category { get; set; } = null!;
 }
