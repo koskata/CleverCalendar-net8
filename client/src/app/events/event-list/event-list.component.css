@@ -9,13 +9,13 @@
 .day-header {
     text-align: center;
     font-weight: bold;
+    background-color:goldenrod;
+    border-radius: 0.3em;
 }
 
 .day-box {
-    /* max-width: 13em; */
-
     width: 100%;
-    max-height: 10.5em;
+    max-height: 12em;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 8px;
@@ -24,6 +24,7 @@
     flex-direction: column;
     position: relative;
     background-color: #f9f9f9;
+    overflow: hidden;
 }
 
 .date {
@@ -32,14 +33,14 @@
 }
 
 .events {
-    margin-top: auto;
-    /* Push events to the bottom of the box */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    height: 100%;
-    overflow: hidden;
+    /* flex-grow: 1; */
+    overflow-y: auto;
+}
+
+.events::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .event {
@@ -47,14 +48,11 @@
     border-radius: 4px;
     margin-bottom: 4px;
 
-    /* max-width: 15em; */
-
-    flex: 1 1 auto;
-    min-height: 15px;
-    font-size: 1em;
-    white-space: initial;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* flex: 1 1 auto; */
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(0.7em, 1em - 0.1em * var(--event-count), 1em);
+    overflow: visible;
     border-bottom: 1px solid #eee;
 }
 
@@ -63,9 +61,14 @@
     font-weight: 600;
 }
 
-.event-time,
+.event-time {
+    font-size: 0.8em;
+}
+
 .event-location {
     font-size: 0.8em;
+    font-style: oblique;
+    font-weight: bold;
 }
 
 .blank {
