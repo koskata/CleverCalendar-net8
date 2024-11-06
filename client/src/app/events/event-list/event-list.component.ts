@@ -18,17 +18,24 @@ export class EventListComponent implements OnInit {
   daysInMonth: Day[] = [];
   daysOfWeek: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   monthName: string = '';
+  monthEmoticon: string = '';
 
   ngOnInit(): void {
+    this.setMonthEmoticons();
     this.loadEvents();
     this.daysInMonth = this.eventService.generateDaysInMonth();
-    this.monthName = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
   }
 
   loadEvents() {
     this.eventService.getEvents().subscribe({
       next: events => this.events = events
     });
+  }
+
+  setMonthEmoticons() {
+    const { monthName, monthEmoticon } = this.eventService.setMonthEmoticons();
+    this.monthName = monthName;
+    this.monthEmoticon = monthEmoticon;
   }
 
   getEventsForDay(date: Date): Event[] {
@@ -67,4 +74,6 @@ export class EventListComponent implements OnInit {
         return '#ffffff';
     }
   }
+
+  
 }
