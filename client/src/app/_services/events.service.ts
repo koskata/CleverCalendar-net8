@@ -15,15 +15,30 @@ export class EventsService {
   events: Event[] = [];
   //--
   daysInMonth: Day[] = [];
-  monthName: string = '';
 
   
+  
+  setMonthEmoticons(): {monthName: string, monthEmoticon: string} {
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const monthEmoticons = [
+      "❄️", "💖", "🌱", "🌷", "🌞", "🌴",
+      "🌊", "🍉", "🍂", "🎃", "🍁", "🎄"
+    ];
+
+    const currentMonth = new Date().getMonth();
+    const monthName = monthNames[currentMonth];
+    const monthEmoticon = monthEmoticons[currentMonth];
+
+    return {monthName, monthEmoticon};
+  }
+
   generateDaysInMonth(): Day[] {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth();
-
-    this.monthName = now.toLocaleString('default', { month: 'long', year: 'numeric' });
 
     const firstDayOfMonth = new Date(year, month, 1);
     const firstDayOfWeek = firstDayOfMonth.getDay();
