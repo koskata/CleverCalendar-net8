@@ -6,7 +6,7 @@
         <p style="font-weight: 300;" class="lead">View all events around you just by signing up!</p>
         <div class="text-center">
             <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2">Register</button>
-            <button class="btn btn-info btn-lg me-2">All Events</button>
+            <button routerLink="/events/" class="btn btn-info btn-lg me-2">All Events</button>
         </div>
     } @else {
         <div class="container">
