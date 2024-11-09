@@ -1,25 +1,37 @@
-
-<h1 class="text-center currentMonth">{{monthEmoticon}}{{monthName}}{{monthEmoticon}}</h1>
+<div class="d-flex" style="justify-content: space-between;">
+  <button class="btn btn-secondary">My events</button>
+  <h1 class="text-center currentMonth">{{monthEmoticon}}{{monthName}}{{monthEmoticon}}</h1>
+  <button routerLink="/events/schedule" class="btn btn-primary d-flex gap-3" style="align-items: center;">
+    <div>Add an event</div>
+    <svg width="1em" height="1em" viewBox="0 0 24 24" style="font-size: 1.8em;">
+      <rect x="10.5" y="2" width="3" height="20" fill="#6fbaf4"></rect>
+      <rect x="2" y="10.5" width="20" height="3" fill="#6fbaf4"></rect>
+    </svg>
+    <!-- <i class="fa fa-plus-thin" style="font-size: 2em; padding-top: 3px; font-weight: 100;"></i> -->
+  </button>
+</div>
 
 <div class="calendar">
-    <!-- Days of the week headers -->
-    <div class="day-header" *ngFor="let day of daysOfWeek">{{ day }}</div>
-  
-    <!-- Display each day in the month, with blanks for alignment -->
-    <div class="day-box" *ngFor="let day of daysInMonth">
-      <ng-container *ngIf="day.date; else blankDay">
-        <div class="date">{{ day.date | date: 'd' }}</div>
-        <div class="events">
-          <!-- Display each event that falls on this day -->
-          <div class="event" *ngFor="let event of getEventsForDay(day.date)" 
-            [ngStyle]="{ 'background-color': getBackgroundColor(event.categoryId), 'color': getFontColor(event.categoryId) }">
-              <div class="event-name">{{ event.name }}</div>
-              <div class="event-time">{{ event.start | date: 'short' }} - {{ event.end | date: 'short' }}</div>
-              <div class="event-location">{{ event.location }}</div>
-          </div>
+  <!-- Days of the week headers -->
+  <div class="day-header" *ngFor="let day of daysOfWeek">{{ day }}</div>
+
+  <!-- Display each day in the month, with blanks for alignment -->
+  <div class="day-box" *ngFor="let day of daysInMonth">
+    <ng-container *ngIf="day.date; else blankDay">
+      <div class="date">{{ day.date | date: 'd' }}</div>
+      <div class="events">
+        <!-- Display each event that falls on this day -->
+        <div class="event" *ngFor="let event of getEventsForDay(day.date)"
+          [ngStyle]="{ 'background-color': getBackgroundColor(event.categoryId), 'color': getFontColor(event.categoryId) }">
+          <div class="event-name">{{ event.name }}</div>
+          <div class="event-time">{{ event.start | date: 'short' }} - {{ event.end | date: 'short' }}</div>
+          <div class="event-location">{{ event.location }}</div>
         </div>
-      </ng-container>
-      <!-- Template for blank day boxes -->
-      <ng-template #blankDay><div class="blank"></div></ng-template>
-    </div>
+      </div>
+    </ng-container>
+    <!-- Template for blank day boxes -->
+    <ng-template #blankDay>
+      <div class="blank"></div>
+    </ng-template>
   </div>
+</div>

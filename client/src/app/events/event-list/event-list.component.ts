@@ -1,14 +1,14 @@
-
 import { Component, inject, OnInit } from '@angular/core';
 import { EventsService } from '../../_services/events.service';
 import { Event } from '../../_models/event';
 import { CommonModule } from '@angular/common';
 import { Day } from '../../_models/day';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
@@ -24,6 +24,7 @@ export class EventListComponent implements OnInit {
     this.setMonthEmoticons();
     this.loadEvents();
     this.daysInMonth = this.eventService.generateDaysInMonth();
+    
   }
 
   loadEvents() {
