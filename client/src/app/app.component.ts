@@ -4,11 +4,12 @@ import { NavComponent } from "./nav/nav.component";
 import { AccountService } from './_services/account.service';
 import { HomeComponent } from "./home/home.component";
 import { NgIf } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, HomeComponent, NgIf],
+  imports: [RouterOutlet, NavComponent, HomeComponent, NgIf, FontAwesomeModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
