@@ -16,7 +16,73 @@ export class EventsService {
   //--
   daysInMonth: Day[] = [];
 
-  
+  getEventsForDay(date: Date): Event[] {
+    return this.events.filter(event => {
+      const eventStart = new Date(event.start);
+      const eventEnd = new Date(event.end);
+      return (
+        date >= new Date(eventStart.getFullYear(), eventStart.getMonth(), eventStart.getDate()) &&
+        date <= new Date(eventEnd.getFullYear(), eventEnd.getMonth(), eventEnd.getDate())
+      );
+    });
+  }
+
+  getBackgroundColor(categoryId: number): string {
+    switch (categoryId) {
+      case 1:
+        return '#b387f5';
+      case 2:
+        return '#75c7f2';
+      case 3:
+        return '#eeeb6f';//eeeb6f
+      default:
+        return '#625c5c';
+    }
+  }
+
+  getFontColor(categoryId: number): string {
+    switch (categoryId) {
+      case 1:
+        return '#ffffff';
+      case 2:
+        return '#000000';
+      case 3:
+        return '#000000';//000000
+      default:
+        return '#ffffff';
+    }
+  }
+
+  getBackgroundColorForDayOfWeek(monthName: string): string {
+    switch (monthName) {
+      case 'January':
+        return '#69EAFF';
+      case 'February':
+        return '#ED4E41';
+      case 'March':
+        return '#E16D2D';
+      case 'April':
+        return '#F495BF';
+      case 'May':
+        return '#FCE100';
+      case 'June':
+        return '#8ABB18';
+      case 'July':
+        return '#00BCF2';
+      case 'August':
+        return '#BAD80A';
+      case 'September':
+        return '#FFB900';
+      case 'October':
+        return '#F7630C';
+      case 'November':
+        return '#D65134';
+      case 'December':
+        return '#13A10E';
+      default:
+        return '';
+    }
+  }
   
   setMonthEmoticons(): {monthName: string, monthEmoticon: string} {
     const monthNames = [

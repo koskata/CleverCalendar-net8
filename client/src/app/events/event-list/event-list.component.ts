@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './event-list.component.css'
 })
 export class EventListComponent implements OnInit {
-  private eventService = inject(EventsService);
+  eventService = inject(EventsService);
   events: Event[] = [];
   daysInMonth: Day[] = [];
   daysOfWeek: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -24,7 +24,7 @@ export class EventListComponent implements OnInit {
     this.setMonthEmoticons();
     this.loadEvents();
     this.daysInMonth = this.eventService.generateDaysInMonth();
-    
+
   }
 
   loadEvents() {
@@ -39,42 +39,4 @@ export class EventListComponent implements OnInit {
     this.monthEmoticon = monthEmoticon;
   }
 
-  getEventsForDay(date: Date): Event[] {
-    return this.events.filter(event => {
-      const eventStart = new Date(event.start);
-      const eventEnd = new Date(event.end);
-      return (
-        date >= new Date(eventStart.getFullYear(), eventStart.getMonth(), eventStart.getDate()) &&
-        date <= new Date(eventEnd.getFullYear(), eventEnd.getMonth(), eventEnd.getDate())
-      );
-    });
-  }
-
-  getBackgroundColor(categoryId: number): string {
-    switch (categoryId) {
-      case 1:
-        return '#b387f5';
-      case 2:
-        return '#75c7f2';
-      case 3:
-        return '#eeeb6f';//eeeb6f
-      default:
-        return '#625c5c';
-    }
-  }
-
-  getFontColor(categoryId: number): string {
-    switch (categoryId) {
-      case 1:
-        return '#ffffff';
-      case 2:
-        return '#000000';
-      case 3:
-        return '#000000';//000000
-      default:
-        return '#ffffff';
-    }
-  }
-
-  
 }
