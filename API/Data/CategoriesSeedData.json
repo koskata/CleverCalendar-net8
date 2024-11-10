@@ -1,0 +1,22 @@
+[
+    {
+        "Name": "Family",
+        "Color": "Purple"
+    },
+    {
+        "Name": "Me",
+        "Color": "Blue"
+    },
+    {
+        "Name": "Friends",
+        "Color": "Yellow"
+    },
+    {
+        "Name": "Work",
+        "Color": "Black"
+    },
+    {
+        "Name": "Holidays",
+        "Color": "Green"
+    }
+]
