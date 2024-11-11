@@ -16,6 +16,10 @@ export class EventsService {
   //--
   daysInMonth: Day[] = [];
 
+  createEvent(model: any) {
+    return this.http.post<Event>(this.baseUrl + 'event/createEvent', model, this.getHttpOptions());
+  }
+
   getEventsForDay(date: Date): Event[] {
     return this.events.filter(event => {
       const eventStart = new Date(event.start);
