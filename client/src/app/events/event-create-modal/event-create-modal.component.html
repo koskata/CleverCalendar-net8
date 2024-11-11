@@ -1,1 +1,30 @@
-<p>event-create-modal works!</p>
+<!-- <div class="modal-background">
+    <div class="modal-content"> -->
+      <form #createEventForm="ngForm" (ngSubmit)="create()" autocomplete="off">
+        <h2>Create New Event</h2>
+        <hr>
+        <div class="mb-3 form-floating">
+            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" placeholder="Name">
+            <label>Name</label>
+        </div>
+        <div class="mb-3 form-floating">
+            <input type="text" class="form-control" name="start" [(ngModel)]="model.start" placeholder="Start">
+            <label>Start</label>
+        </div>
+        <div class="mb-3 form-floating">
+            <input type="text" class="form-control" name="end" [(ngModel)]="model.end" placeholder="End">
+            <label>End</label>
+        </div>
+        <div class="mb-3 form-floating">
+            <input type="text" class="form-control" name="location" [(ngModel)]="model.location" placeholder="Location">
+            <label>Location</label>
+        </div>
+    
+        <div class="form-group text-center">
+            <button class="btn btn-success me-2" type="submit">Create</button>
+            <button class="btn btn-outline-danger me-2" (click)="close()" type="button">Cancel</button>
+        </div>
+    </form>
+    <!-- </div>
+  </div> -->
+  
