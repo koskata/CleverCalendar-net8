@@ -19,7 +19,6 @@ export const routes: Routes = [
             { path: 'events', component: EventListComponent, canActivate: [authGuard] },
             { path: 'events/liked', component: EventLikedComponent },
             { path: 'events/schedule', component: EventScheduleComponent },
-            { path: 'events/create', component: EventCreateModalComponent },
         ]
     },
     {path: 'errors', component: TestErrorComponent},
