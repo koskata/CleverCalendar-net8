@@ -7,6 +7,7 @@ import { authGuard } from './_guards/auth.guard';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
+import { EventCreateModalComponent } from './events/event-create-modal/event-create-modal.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
             { path: 'events', component: EventListComponent, canActivate: [authGuard] },
             { path: 'events/liked', component: EventLikedComponent },
             { path: 'events/schedule', component: EventScheduleComponent },
+            { path: 'events/create', component: EventCreateModalComponent },
         ]
     },
     {path: 'errors', component: TestErrorComponent},
