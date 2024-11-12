@@ -2,6 +2,7 @@ using System;
 using API.Data;
 using API.DTOs;
 using API.Extensions;
+using API.Interfaces.Event;
 using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,11 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers;
 
 
-public class EventController (CleverCalendarContext context) : BaseApiController
+public class EventController (CleverCalendarContext context, IEventService _eventService) : BaseApiController
 {
+
+    private readonly IEventService eventService = _eventService;
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Event>>> GetEvents() 
     {
@@ -60,5 +64,13 @@ public class EventController (CleverCalendarContext context) : BaseApiController
             Location = eventModel.Location,
             CategoryId = eventModel.CategoryId
         };
+    }
+
+    [Authorize]
+    [HttpGet("getAllEventCategories")]
+    public async Task<ActionResult<List<EventCategoryDto>>> GetAllEventCategories() {
+        var eventCategories = await eventService.GetAllEventCategoriesAsync();
+
+        return eventCategories;
     }
 }
