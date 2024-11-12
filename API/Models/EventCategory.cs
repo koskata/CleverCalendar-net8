@@ -20,5 +20,8 @@ public class EventCategory
     [Required]
     public string Color { get; set; } = string.Empty;
 
+    [Required]
+    public string Emoticon { get; set; } = string.Empty;
+
     public IEnumerable<Event> Events { get; set; }
 }

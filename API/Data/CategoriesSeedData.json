@@ -1,22 +1,27 @@
 [
     {
         "Name": "Family",
-        "Color": "Purple"
+        "Color": "Purple",
+        "Emoticon": "👨‍👩‍👧‍👦"
     },
     {
         "Name": "Me",
-        "Color": "Blue"
+        "Color": "Blue",
+        "Emoticon": "🧒"
     },
     {
         "Name": "Friends",
-        "Color": "Yellow"
+        "Color": "Yellow",
+        "Emoticon": "👨🏻‍🤝‍👨🏻"
     },
     {
         "Name": "Work",
-        "Color": "Black"
+        "Color": "Black",
+        "Emoticon": "💼"
     },
     {
         "Name": "Holidays",
-        "Color": "Green"
+        "Color": "Green",
+        "Emoticon": "🎉"
     }
 ]
