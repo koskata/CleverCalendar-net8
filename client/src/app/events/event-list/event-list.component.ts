@@ -3,13 +3,14 @@ import { EventsService } from '../../_services/events.service';
 import { Event } from '../../_models/event';
 import { CommonModule, NgIf } from '@angular/common';
 import { Day } from '../../_models/day';
-import { RouterLink } from '@angular/router';
 import { EventCreateModalComponent } from "../event-create-modal/event-create-modal.component";
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, EventCreateModalComponent, NgIf],
+  imports: [CommonModule, EventCreateModalComponent, NgIf],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
