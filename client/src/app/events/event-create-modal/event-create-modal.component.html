@@ -1,7 +1,7 @@
 <div class="modal-background">
     <div class="modal-content">
         <form #createEventForm="ngForm" autocomplete="off">
-            <h2 class="text-center">Create New Event</h2>
+            <h2 class="text-center">Create New Event <span style="font-size: 0.8em; margin-left: 0.5em;">⛳</span></h2>
             <hr>
             <div class="mb-3 form-floating">
                 <input type="text" class="form-control" name="name" [(ngModel)]="model.name" placeholder="Name">
@@ -21,14 +21,18 @@
                 <label>Location</label>
             </div>
 
-            <div dropdown class="dropdown">
-                <a dropdownToggle class="dropdown-toggle text-dark text-decoration-none">sdgdsgdsgs</a>
-                <div *dropdownMenu class="dropdown-menu">
-                    <a style="font-weight: 700;" class="dropdown-item text-center">Logout</a>
-                </div>
-            </div>
+            <p-dropdown class="custom-dropdown text-dark" name="categoryName" [options]="categories" [(ngModel)]="model.category" optionLabel="name" placeholder="Select a Category">
+                <ng-template let-category pTemplate="item">
+                    <span>{{category.emoticon}} {{ category.name }}</span>
+                </ng-template>
 
-            <div class="form-group text-center">
+                <ng-template let-category pTemplate="selectedItem">
+                    <span *ngIf="category">{{category.emoticon}} {{ category.name }}</span>
+                    <span *ngIf="!category">Select Category</span>
+                  </ng-template>
+            </p-dropdown>
+
+            <div class="form-group text-center mt-5">
                 <button class="btn btn-success me-2" type="submit">Create</button>
                 <button class="btn btn-outline-danger me-2" (click)="close()" type="button">Cancel</button>
             </div>
