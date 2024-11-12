@@ -3,25 +3,36 @@ import { EventsService } from '../../_services/events.service';
 import { Event } from '../../_models/event';
 import { FormsModule } from '@angular/forms';
 import { EventCategory } from '../../_models/eventCategory';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { DropdownModule } from 'primeng/dropdown';
+
 @Component({
   selector: 'app-event-create-modal',
   standalone: true,
-  imports: [FormsModule, BsDropdownModule],
+  imports: [FormsModule, DropdownModule, NgIf],
   templateUrl: './event-create-modal.component.html',
   styleUrl: './event-create-modal.component.css'
 })
 export class EventCreateModalComponent implements OnInit {
-  // categories: EventCategory[] = [];
-  // selectedCategory: string | null = null; 
-
   private eventService = inject(EventsService);
   closeModal = output<boolean>();
+  categories: EventCategory[] = [];
 
   model: any = {};
   
   ngOnInit(): void {
+    this.generateCategoriesForEventsFromDatabase();
+  }
+
+  generateCategoriesForEventsFromDatabase() {
+    this.eventService.getCategoriesFromDatabase().subscribe({
+      next: (categories) => {
+        this.categories = categories; // Assign the fetched categories to the `categories` array.
+      },
+      error: (err) => {
+        console.error('Error fetching categories:', err); // Log any error.
+      }
+    });
   }
 
   create() {
@@ -39,19 +50,5 @@ export class EventCreateModalComponent implements OnInit {
   close() {
     console.log('Close button clicked');
     this.closeModal.emit(false);
-  }
-
-
-  categories: EventCategory[] = [
-    { id: 1, name: 'Work', color: 'Purple' },
-    { id: 2, name: 'Personal', color: 'Purple' },
-    { id: 3, name: 'Travel', color: 'Purple' }
-  ];
-  
-  selectedCategory: string | null = null;
-  
-  selectCategory(category: EventCategory) {
-    this.selectedCategory = category.name;
-    console.log('Selected Category:', category.name);
   }
 }
