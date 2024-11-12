@@ -1,7 +1,7 @@
 <div class="modal-background">
     <div class="modal-content">
-        <form #createEventForm="ngForm" (ngSubmit)="create()" autocomplete="off">
-            <h2>Create New Event</h2>
+        <form #createEventForm="ngForm" autocomplete="off">
+            <h2 class="text-center">Create New Event</h2>
             <hr>
             <div class="mb-3 form-floating">
                 <input type="text" class="form-control" name="name" [(ngModel)]="model.name" placeholder="Name">
@@ -19,6 +19,13 @@
                 <input type="text" class="form-control" name="location" [(ngModel)]="model.location"
                     placeholder="Location">
                 <label>Location</label>
+            </div>
+
+            <div dropdown class="dropdown">
+                <a dropdownToggle class="dropdown-toggle text-dark text-decoration-none">sdgdsgdsgs</a>
+                <div *dropdownMenu class="dropdown-menu">
+                    <a style="font-weight: 700;" class="dropdown-item text-center">Logout</a>
+                </div>
             </div>
 
             <div class="form-group text-center">
