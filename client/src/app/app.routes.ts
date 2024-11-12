@@ -18,7 +18,6 @@ export const routes: Routes = [
         children: [
             { path: 'events', component: EventListComponent, canActivate: [authGuard] },
             { path: 'events/liked', component: EventLikedComponent },
-            { path: 'events/schedule', component: EventScheduleComponent },
         ]
     },
     {path: 'errors', component: TestErrorComponent},
