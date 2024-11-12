@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { AccountService } from './account.service';
 import { Event } from '../_models/event';
 import { Day } from '../_models/day';
+import { EventCategory } from '../_models/eventCategory';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,11 @@ export class EventsService {
   createEvent(model: any) {
     return this.http.post<Event>(this.baseUrl + 'event/createEvent', model, this.getHttpOptions());
   }
+
+  getCategoriesFromDatabase() {
+    return this.http.get<EventCategory[]>(this.baseUrl + 'event/getAllEventCategories', this.getHttpOptions());
+  }
+
 
   getEventsForDay(date: Date): Event[] {
     return this.events.filter(event => {
