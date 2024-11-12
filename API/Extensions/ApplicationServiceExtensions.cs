@@ -1,6 +1,7 @@
 using System;
 using API.Data;
 using API.Interfaces;
+using API.Interfaces.Event;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,7 @@ public static class ApplicationServiceExtensions
 
         services.AddCors();
         services.AddScoped<ITokenService, TokenService>();
-
+        services.AddScoped<IEventService, EventService>();
         return services;
     }
 }
