@@ -44,25 +44,15 @@ public class EventController (CleverCalendarContext context, IEventService _even
     public async Task<ActionResult<EventDto>> CreateEvent(EventDto eventDto) {
         
         string userId = User.GetUserId();
-        
-        var eventModel = new Event() {
-            Name = eventDto.Name,
-            Start = DateTime.Parse(eventDto.Start),
-            End = DateTime.Parse(eventDto.End),
-            Location = eventDto.Location,
-            UserId = Guid.Parse(userId),
-            CategoryId = eventDto.CategoryId
-        };
 
-        await context.Events.AddAsync(eventModel);
-        await context.SaveChangesAsync();
+        var eventModel = await eventService.CreateEventAsync(eventDto, userId);
 
         return new EventDto() {
             Name = eventModel.Name,
             Start = eventModel.Start.ToString(),
             End = eventModel.End.ToString(),
             Location = eventModel.Location,
-            CategoryId = eventModel.CategoryId
+            Category = eventModel.Category
         };
     }
 
