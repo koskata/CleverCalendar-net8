@@ -3,13 +3,15 @@ import { EventsService } from '../../_services/events.service';
 import { Event } from '../../_models/event';
 import { FormsModule } from '@angular/forms';
 import { EventCategory } from '../../_models/eventCategory';
-import { NgFor, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import {InputMaskModule} from 'primeng/inputmask';
 
 @Component({
   selector: 'app-event-create-modal',
   standalone: true,
-  imports: [FormsModule, DropdownModule, NgIf],
+  imports: [FormsModule, DropdownModule, NgIf, CalendarModule, InputMaskModule],
   templateUrl: './event-create-modal.component.html',
   styleUrl: './event-create-modal.component.css'
 })
@@ -44,6 +46,7 @@ export class EventCreateModalComponent implements OnInit {
           this.close();
         },
       });
+      console.log(this.model);
     // }
   }
 

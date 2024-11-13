@@ -1,27 +1,32 @@
 <div class="modal-background">
     <div class="modal-content">
-        <form #createEventForm="ngForm" autocomplete="off">
+        <form #createEventForm="ngForm" (ngSubmit)="create()" autocomplete="off">
             <h2 class="text-center">Create New Event <span style="font-size: 0.8em; margin-left: 0.5em;">⛳</span></h2>
             <hr>
             <div class="mb-3 form-floating">
                 <input type="text" class="form-control" name="name" [(ngModel)]="model.name" placeholder="Name">
                 <label>Name</label>
             </div>
-            <div class="mb-3 form-floating">
-                <input type="text" class="form-control" name="start" [(ngModel)]="model.start" placeholder="Start">
-                <label>Start</label>
+
+            <div class="p-fluid mb-3">
+                <div class="p-field">
+                    <p-calendar name="start" [(ngModel)]="model.start" [showTime]="true" [showIcon]="true" [showOnFocus]="false" inputId="calendar-24h" placeholder="Start date"></p-calendar>
+                </div>
             </div>
-            <div class="mb-3 form-floating">
-                <input type="text" class="form-control" name="end" [(ngModel)]="model.end" placeholder="End">
-                <label>End</label>
+            
+            <div class="p-fluid mb-3">
+                <div class="p-field">
+                    <p-calendar name="end" [(ngModel)]="model.end" [showTime]="true" [showIcon]="true" [showOnFocus]="false" inputId="calendar-24h" placeholder="End date"></p-calendar>
+                </div>
             </div>
+
             <div class="mb-3 form-floating">
                 <input type="text" class="form-control" name="location" [(ngModel)]="model.location"
                     placeholder="Location">
                 <label>Location</label>
             </div>
 
-            <p-dropdown class="custom-dropdown text-dark" name="categoryName" [options]="categories" [(ngModel)]="model.category" optionLabel="name" placeholder="Select a Category">
+            <p-dropdown class="custom-dropdown text-dark" name="category" [options]="categories" [(ngModel)]="model.category" optionLabel="name" placeholder="Select a Category">
                 <ng-template let-category pTemplate="item">
                     <span>{{category.emoticon}} {{ category.name }}</span>
                 </ng-template>
