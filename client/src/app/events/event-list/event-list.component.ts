@@ -27,12 +27,26 @@ export class EventListComponent implements OnInit {
     this.setMonthEmoticons();
     this.loadEvents();
     this.daysInMonth = this.eventService.generateDaysInMonth();
-
+    console.log(this.events);
   }
 
   loadEvents() {
     this.eventService.getEvents().subscribe({
-      next: events => this.events = events
+      next: (events) => {
+        this.events = events;
+        console.log(this.events);
+      }
+    });
+  }
+
+  getEventsForDay(date: Date): Event[] {
+    return this.events.filter(event => {
+      const eventStart = new Date(event.start);
+      const eventEnd = new Date(event.end);
+      return (
+        date >= new Date(eventStart.getFullYear(), eventStart.getMonth(), eventStart.getDate()) &&
+        date <= new Date(eventEnd.getFullYear(), eventEnd.getMonth(), eventEnd.getDate())
+      );
     });
   }
 
@@ -49,6 +63,7 @@ export class EventListComponent implements OnInit {
   closeModal(event: boolean) {
     console.log('Modal close event received');
     this.showModal = event;
+    this.loadEvents();
   }
 
 }

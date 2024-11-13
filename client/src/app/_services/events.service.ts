@@ -13,7 +13,6 @@ export class EventsService {
   private http = inject(HttpClient);
   private accountService = inject(AccountService);
   baseUrl = environment.apiUrl;
-  events: Event[] = [];
   //--
   daysInMonth: Day[] = [];
 
@@ -23,18 +22,6 @@ export class EventsService {
 
   getCategoriesFromDatabase() {
     return this.http.get<EventCategory[]>(this.baseUrl + 'event/getAllEventCategories', this.getHttpOptions());
-  }
-
-
-  getEventsForDay(date: Date): Event[] {
-    return this.events.filter(event => {
-      const eventStart = new Date(event.start);
-      const eventEnd = new Date(event.end);
-      return (
-        date >= new Date(eventStart.getFullYear(), eventStart.getMonth(), eventStart.getDate()) &&
-        date <= new Date(eventEnd.getFullYear(), eventEnd.getMonth(), eventEnd.getDate())
-      );
-    });
   }
 
   getBackgroundColor(categoryId: number): string {
