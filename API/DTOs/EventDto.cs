@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using API.Models;
 
 namespace API.DTOs;
 
@@ -18,7 +19,5 @@ public class EventDto
 
     // public string User { get; set; } = string.Empty;
 
-    public int CategoryId { get; set; }
-
-    public string Category { get; set; } = string.Empty;
+    public EventCategory Category { get; set; } = null!;
 }
