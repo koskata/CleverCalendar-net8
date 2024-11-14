@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@angular/common": "^18.2.11",
+    "@angular/google-maps": "^18.2.13",
     "@angular/platform-browser": "^18.2.11",
     "@fortawesome/angular-fontawesome": "^0.15.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
