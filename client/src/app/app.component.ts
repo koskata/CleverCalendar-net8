@@ -2,21 +2,19 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from "./nav/nav.component";
 import { AccountService } from './_services/account.service';
-import { HomeComponent } from "./home/home.component";
-import { NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, HomeComponent, NgIf, FontAwesomeModule],
+  imports: [RouterOutlet, NavComponent, FontAwesomeModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   accountService = inject(AccountService);
 
-
+  
   ngOnInit(): void {
     this.setCurrentUser();
   }
@@ -30,5 +28,5 @@ export class AppComponent implements OnInit {
     this.accountService.currentUser.set(user);
   }
 
-  
+
 }
