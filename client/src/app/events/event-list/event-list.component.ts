@@ -4,18 +4,17 @@ import { Event } from '../../_models/event';
 import { CommonModule, NgIf } from '@angular/common';
 import { Day } from '../../_models/day';
 import { EventCreateModalComponent } from "../event-create-modal/event-create-modal.component";
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { FormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, EventCreateModalComponent, NgIf],
+  imports: [CommonModule, EventCreateModalComponent, NgIf, GoogleMapsModule],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
 export class EventListComponent implements OnInit {
-  eventService = inject(EventsService);
+  eventService = inject(EventsService); 
   events: Event[] = [];
   daysInMonth: Day[] = [];
   daysOfWeek: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -23,12 +22,42 @@ export class EventListComponent implements OnInit {
   monthEmoticon: string = '';
   showModal = false;
 
+  /* Google Maps Module */
+
+  display: any;
+  center: google.maps.LatLngLiteral = {
+    lat: 22.2736308,
+    lng: 70.7512555
+  };
+
+  zoom = 6;
+
+  /* Google Maps Module */
+
+  /* Google Maps Module */
+
+  moveMap(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) {
+      this.center = (event.latLng.toJSON());
+    }
+  }
+
+  move(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) {
+      this.display = event.latLng.toJSON();
+    }
+  }
+
+  /* Google Maps Module */
+
   ngOnInit(): void {
     this.setMonthEmoticons();
     this.loadEvents();
     this.daysInMonth = this.eventService.generateDaysInMonth();
     console.log(this.events);
   }
+
+
 
   loadEvents() {
     this.eventService.getEvents().subscribe({
@@ -55,7 +84,7 @@ export class EventListComponent implements OnInit {
     this.monthName = monthName;
     this.monthEmoticon = monthEmoticon;
   }
-  
+
   modalToggle() {
     this.showModal = !this.showModal;
   }
