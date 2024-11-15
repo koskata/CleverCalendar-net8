@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavComponent } from "./nav/nav.component";
 import { AccountService } from './_services/account.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 export class AppComponent implements OnInit {
   accountService = inject(AccountService);
 
+  constructor(private primengConfig: PrimeNGConfig) {}
   
   ngOnInit(): void {
     this.setCurrentUser();
+    this.primengConfig.ripple = true;
   }
 
   setCurrentUser() {
