@@ -28,7 +28,7 @@
     overflow: hidden;
 
     box-shadow: 0.1px 1px 1px black;
-    
+
 }
 
 .date {
@@ -44,7 +44,8 @@
 }
 
 .events::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .event {
@@ -79,3 +80,93 @@
     background-color: transparent;
     border: none;
 }
+
+/* ------------- */
+
+
+
+
+/* Pagination buttons */
+.paginationBtn {
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #b3b3b3 0%, #d1d1d1 100%);
+    background-color: #b3b3b3;
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.paginationBtn:focus {
+    box-shadow: #6e6e6e 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #6e6e6e 0 -3px 0 inset;
+}
+
+.paginationBtn:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #6e6e6e 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.paginationBtn:active {
+    box-shadow: #6e6e6e 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+
+.createEventBtn {
+    background-image: radial-gradient(100% 100% at 100% 0, #4ec5d4 0%, #1a80b6 100%);
+    
+}
+
+.createEventBtn:focus {
+    box-shadow: #1a80b6 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #1a80b6 0 -3px 0 inset;
+  }
+  
+  .createEventBtn:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #1a80b6 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+  .createEventBtn:active {
+    box-shadow: #1a80b6 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+
+
+
+  .myEventsBtn {
+    background-image: radial-gradient(100% 100% at 100% 0, #c0c0c0 0%, #e5e5e5 100%);
+  }
+  
+  .myEventsBtn:focus {
+    box-shadow: #b3b3b3 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #b3b3b3 0 -3px 0 inset;
+  }
+  
+  .myEventsBtn:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #b3b3b3 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+  .myEventsBtn:active {
+    box-shadow: #b3b3b3 0 3px 7px inset;
+    transform: translateY(2px);
+  }
