@@ -1,7 +1,22 @@
 <div class="d-flex" style="justify-content: space-between;">
-  <button class="btn btn-secondary">⚙ My events</button>
-  <h1 class="text-center currentMonth">{{monthName}}{{monthEmoticon}}</h1>
-  <button (click)="modalToggle()" class="btn btn-primary d-flex gap-3" style="align-items: center;">
+  <button class="btn btn-secondary myEventsBtn">⚙ My events</button>
+  <div class="d-flex">
+    <button (click)="changeMonth(-1)" class="paginationBtn me-4" role="button">
+      <svg width="1em" height="1em" viewBox="0 0 24 24" style="font-size: 1.8em;">
+        <path fill="white" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <h1 class="text-center currentMonth">{{monthName}} - {{monthYear}}{{monthEmoticon}}</h1>
+
+    <button (click)="changeMonth(1)" class="paginationBtn ms-4 btn btn-primary" role="button">
+      <svg width="1em" height="1em" viewBox="0 0 24 24" style="font-size: 1.8em;">
+        <path fill="white" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <button (click)="modalToggle()" class="btn btn-primary d-flex gap-3 paginationBtn createEventBtn" style="align-items: center;">
     <div>Create event</div>
     <svg width="1em" height="1em" viewBox="0 0 24 24" style="font-size: 1.8em;">
       <rect x="10.5" y="2" width="3" height="20" fill="white"></rect>
@@ -38,12 +53,7 @@
     </ng-template>
   </div>
 </div>
-<google-map height="450px" width="1000px" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)" (mapMousemove)="move($event)"> 
-  
-</google-map>
-<div>Latitude {{display?.lat}}</div>
-<div>Longtitude {{display?.lng}}</div>
 
 @if (showModal) {
-  <app-event-create-modal (closeModal)="closeModal($event)"></app-event-create-modal>
+<app-event-create-modal (closeModal)="closeModal($event)"></app-event-create-modal>
 }

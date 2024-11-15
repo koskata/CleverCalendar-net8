@@ -4,12 +4,11 @@ import { Event } from '../../_models/event';
 import { CommonModule, NgIf } from '@angular/common';
 import { Day } from '../../_models/day';
 import { EventCreateModalComponent } from "../event-create-modal/event-create-modal.component";
-import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, EventCreateModalComponent, NgIf, GoogleMapsModule],
+  imports: [CommonModule, EventCreateModalComponent, NgIf],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
@@ -19,41 +18,15 @@ export class EventListComponent implements OnInit {
   daysInMonth: Day[] = [];
   daysOfWeek: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   monthName: string = '';
+  monthYear: number = new Date().getFullYear();;
   monthEmoticon: string = '';
   showModal = false;
-
-  /* Google Maps Module */
-
-  display: any;
-  center: google.maps.LatLngLiteral = {
-    lat: 22.2736308,
-    lng: 70.7512555
-  };
-
-  zoom = 6;
-
-  /* Google Maps Module */
-
-  /* Google Maps Module */
-
-  moveMap(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null) {
-      this.center = (event.latLng.toJSON());
-    }
-  }
-
-  move(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null) {
-      this.display = event.latLng.toJSON();
-    }
-  }
-
-  /* Google Maps Module */
+  currentMonthIndex: number = new Date().getMonth();
 
   ngOnInit(): void {
     this.setMonthEmoticons();
     this.loadEvents();
-    this.daysInMonth = this.eventService.generateDaysInMonth();
+    this.daysInMonth = this.eventService.generateDaysInMonth(this.currentMonthIndex, this.monthYear);
     console.log(this.events);
   }
 
@@ -80,7 +53,8 @@ export class EventListComponent implements OnInit {
   }
 
   setMonthEmoticons() {
-    const { monthName, monthEmoticon } = this.eventService.setMonthEmoticons();
+    const { monthName, monthEmoticon } = this.eventService.setMonthEmoticons(this.currentMonthIndex);
+    console.log(this.monthYear);
     this.monthName = monthName;
     this.monthEmoticon = monthEmoticon;
   }
@@ -93,6 +67,23 @@ export class EventListComponent implements OnInit {
     console.log('Modal close event received');
     this.showModal = event;
     this.loadEvents();
+  }
+
+  changeMonth(direction: number) {
+    this.currentMonthIndex += direction; // +1 for next, -1 for previous
+    if (this.currentMonthIndex < 0) {
+      this.currentMonthIndex = 11; // Wrap around to December
+      this.monthYear -= 1;
+    } else if (this.currentMonthIndex > 11) {
+      this.currentMonthIndex = 0; // Wrap around to January
+      this.monthYear += 1;
+    }
+    console.log(this.monthYear);
+    this.setMonthEmoticons(); // Update the month display and emoticon
+
+    this.daysInMonth = this.eventService.generateDaysInMonth(this.currentMonthIndex, this.monthYear); // Generate days for the new month
+
+    this.loadEvents(); // Reload events for the new month
   }
 
 }
