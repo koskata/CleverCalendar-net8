@@ -32,8 +32,12 @@ export class EventsService {
         return '#75c7f2';
       case 3:
         return '#eeeb6f';//eeeb6f
-      default:
+      case 4:
         return '#625c5c';
+      case 5:
+        return '#3eb83e';
+      default:
+        return '#eeeb6f';
     }
   }
 
@@ -80,8 +84,8 @@ export class EventsService {
         return '';
     }
   }
-  
-  setMonthEmoticons(): {monthName: string, monthEmoticon: string} {
+
+  setMonthEmoticons(monthIndex: number): {monthName: string, monthEmoticon: string} {
     const monthNames = [
       "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
@@ -90,18 +94,21 @@ export class EventsService {
       "❄️", "💖", "🌱", "🌷", "🌞", "🌴",
       "🌊", "🍉", "🍂", "🎃", "🍁", "🎄"
     ];
-
-    const currentMonth = new Date().getMonth();
-    const monthName = monthNames[currentMonth];
-    const monthEmoticon = monthEmoticons[currentMonth];
-
-    return {monthName, monthEmoticon};
+  
+    // Use the provided monthIndex to get the correct month name and emoticon
+    const monthName = monthNames[monthIndex];
+    const monthEmoticon = monthEmoticons[monthIndex]; 
+  
+    return { monthName, monthEmoticon };
   }
 
-  generateDaysInMonth(): Day[] {
+  generateDaysInMonth(monthIndex: number, monthYear: number): Day[] {
     const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
+    // const year = now.getFullYear();
+    const year = monthYear;
+    const month = monthIndex;
+
+    console.log(year);
 
     const firstDayOfMonth = new Date(year, month, 1);
     const firstDayOfWeek = firstDayOfMonth.getDay();
