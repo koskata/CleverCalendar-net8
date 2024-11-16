@@ -6,12 +6,13 @@ import { EventCategory } from '../../_models/eventCategory';
 import { NgIf } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
-import {InputMaskModule} from 'primeng/inputmask';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-event-create-modal',
   standalone: true,
-  imports: [FormsModule, DropdownModule, NgIf, CalendarModule, InputMaskModule],
+  imports: [FormsModule, DropdownModule, NgIf, CalendarModule, InputMaskModule, InputTextModule],
   templateUrl: './event-create-modal.component.html',
   styleUrl: './event-create-modal.component.css'
 })
@@ -21,7 +22,7 @@ export class EventCreateModalComponent implements OnInit {
   categories: EventCategory[] = [];
 
   model: any = {};
-  
+
   ngOnInit(): void {
     this.generateCategoriesForEventsFromDatabase();
   }
@@ -29,25 +30,22 @@ export class EventCreateModalComponent implements OnInit {
   generateCategoriesForEventsFromDatabase() {
     this.eventService.getCategoriesFromDatabase().subscribe({
       next: (categories) => {
-        this.categories = categories; // Assign the fetched categories to the `categories` array.
+        this.categories = categories;
       },
       error: (err) => {
-        console.error('Error fetching categories:', err); // Log any error.
+        console.error('Error fetching categories:', err);
       }
     });
   }
 
   create() {
-    // if (this.event.name && this.event.start && this.event.end) {
-      console.log('Form submitted');
-      this.eventService.createEvent(this.model).subscribe({
-        next: response => {
-          console.log(response);
-          this.close();
-        },
-      });
-      console.log(this.model);
-    // }
+    console.log('Form submitted');
+    this.eventService.createEvent(this.model).subscribe({
+      next: response => {
+        console.log(response);
+        this.close();
+      },
+    });
   }
 
   close() {

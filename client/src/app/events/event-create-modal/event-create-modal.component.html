@@ -3,30 +3,45 @@
         <form #createEventForm="ngForm" (ngSubmit)="create()" autocomplete="off">
             <h2 class="text-center">Create New Event <span style="font-size: 0.8em; margin-left: 0.5em;">⛳</span></h2>
             <hr>
-            <div class="mb-3 form-floating">
-                <input type="text" class="form-control" name="name" [(ngModel)]="model.name" placeholder="Name">
-                <label>Name</label>
+            <div class="mb-3 form-floating p-fluid">
+                <div class="p-field">
+                    <input pInputText type="text" name="name" [(ngModel)]="model.name" placeholder="Name" required minlength="2" maxlength="45" #name="ngModel">
+                </div>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                    <small *ngIf="name.errors?.['required']">Name is required.</small>
+                    <small *ngIf="name.errors?.['minlength']">Name must be at least 2 characters long.</small>
+                    <small *ngIf="name.errors?.['maxlength']">Name can't be more than 45 characters long.</small>
+                </div>
             </div>
 
             <div class="p-fluid mb-3">
                 <div class="p-field">
-                    <p-calendar name="start" [(ngModel)]="model.start" [showTime]="true" [showIcon]="true" [showOnFocus]="false" inputId="calendar-24h" placeholder="Start date"></p-calendar>
+                    <p-calendar name="start" [(ngModel)]="model.start" [showTime]="true" [showIcon]="true" [showOnFocus]="false" inputId="calendar-24h" placeholder="Start date" required #start="ngModel"></p-calendar>
+                    <div *ngIf="start.invalid && start.touched" class="text-danger">
+                        <small>Start date is required.</small>
+                    </div>
                 </div>
             </div>
             
             <div class="p-fluid mb-3">
                 <div class="p-field">
-                    <p-calendar name="end" [(ngModel)]="model.end" [showTime]="true" [showIcon]="true" [showOnFocus]="false" inputId="calendar-24h" placeholder="End date"></p-calendar>
+                    <p-calendar name="end" [(ngModel)]="model.end" [showTime]="true" [showIcon]="true" [showOnFocus]="false" inputId="calendar-24h" placeholder="End date" required #end="ngModel"></p-calendar>
+                    <div *ngIf="end.invalid && end.touched" class="text-danger">
+                        <small>End date is required.</small>
+                    </div>
                 </div>
             </div>
 
-            <div class="mb-3 form-floating">
-                <input type="text" class="form-control" name="location" [(ngModel)]="model.location"
-                    placeholder="Location">
-                <label>Location</label>
+            <div class="mb-3 form-floating p-fluid">
+                <div class="p-field">
+                    <input pInputText type="text" name="location" [(ngModel)]="model.location" placeholder="Location" required #location="ngModel">
+                </div>
+                <div *ngIf="location.invalid && location.touched" class="text-danger">
+                    <small>Location is required.</small>
+                </div>
             </div>
 
-            <p-dropdown class="custom-dropdown text-dark" name="category" [options]="categories" [(ngModel)]="model.category" optionLabel="name" placeholder="Select a Category">
+            <p-dropdown class="custom-dropdown text-dark" name="category" [options]="categories" [(ngModel)]="model.category" optionLabel="name" placeholder="Select a Category" required #category="ngModel">
                 <ng-template let-category pTemplate="item">
                     <span>{{category.emoticon}} {{ category.name }}</span>
                 </ng-template>
@@ -36,9 +51,12 @@
                     <span *ngIf="!category">Select Category</span>
                   </ng-template>
             </p-dropdown>
+            <div *ngIf="category.invalid && category.touched" class="text-danger">
+                <small>Category is required.</small>
+            </div>
 
             <div class="form-group text-center mt-5">
-                <button class="btn btn-success me-2" type="submit">Create</button>
+                <button class="btn btn-success me-2" type="submit" [disabled]="createEventForm.invalid">Create</button>
                 <button class="btn btn-outline-danger me-2" (click)="close()" type="button">Cancel</button>
             </div>
         </form>
