@@ -1,0 +1,5 @@
+<div class="event" [ngStyle]="{ 'background-color': backgroundColor, 'color': fontColor }">
+    <div class="event-name">{{ event.name }}</div>
+    <div class="event-time">{{ event.start | date: 'short' }} - {{ event.end | date: 'short' }}</div>
+    <div class="event-location">{{ event.location }}</div>
+</div>
