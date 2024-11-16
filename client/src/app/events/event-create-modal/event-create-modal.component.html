@@ -34,10 +34,7 @@
 
             <div class="mb-3 form-floating p-fluid">
                 <div class="p-field">
-                    <input pInputText type="text" name="location" [(ngModel)]="model.location" placeholder="Location" required #location="ngModel">
-                </div>
-                <div *ngIf="location.invalid && location.touched" class="text-danger">
-                    <small>Location is required.</small>
+                    <input pInputText type="text" name="location" [(ngModel)]="model.location" placeholder="Location">
                 </div>
             </div>
 
