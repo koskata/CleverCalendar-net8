@@ -1,14 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { EventsService } from '../../_services/events.service';
 import { Event } from '../../_models/event';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Day } from '../../_models/day';
 import { EventCreateModalComponent } from "../event-create-modal/event-create-modal.component";
+import { EventModelComponent } from "../event-model/event-model.component";
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, EventCreateModalComponent, NgIf],
+  imports: [CommonModule, EventCreateModalComponent, NgIf, NgFor, EventModelComponent],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })

@@ -16,7 +16,8 @@
     </button>
   </div>
 
-  <button (click)="modalToggle()" class="btn btn-primary d-flex gap-3 paginationBtn createEventBtn" style="align-items: center;">
+  <button (click)="modalToggle()" class="btn btn-primary d-flex gap-3 paginationBtn createEventBtn"
+    style="align-items: center;">
     <div>Create event</div>
     <svg width="1em" height="1em" viewBox="0 0 24 24" style="font-size: 1.8em;">
       <rect x="10.5" y="2" width="3" height="20" fill="white"></rect>
@@ -29,25 +30,20 @@
 
 
 <div class="calendar">
-  <!-- Days of the week headers -->
   <div class="day-header" [ngStyle]="{'background-color': eventService.getBackgroundColorForDayOfWeek(monthName)}"
     *ngFor="let day of daysOfWeek">{{ day }}</div>
 
-  <!-- Display each day in the month, with blanks for alignment -->
   <div class="day-box" *ngFor="let day of daysInMonth">
     <ng-container *ngIf="day.date; else blankDay">
       <div class="date">{{ day.date | date: 'd' }}</div>
       <div class="events">
-        <!-- Display each event that falls on this day -->
-        <div class="event" *ngFor="let event of getEventsForDay(day.date)"
-          [ngStyle]="{ 'background-color': eventService.getBackgroundColor(event.categoryId), 'color': eventService.getFontColor(event.categoryId) }">
-          <div class="event-name">{{ event.name }}</div>
-          <div class="event-time">{{ event.start | date: 'short' }} - {{ event.end | date: 'short' }}</div>
-          <div class="event-location">{{ event.location }}</div>
-        </div>
+        <app-event-model *ngFor="let event of getEventsForDay(day.date)" [event]="event"
+          [backgroundColor]="eventService.getBackgroundColor(event.categoryId)"
+          [fontColor]="eventService.getFontColor(event.categoryId)">
+        </app-event-model>
       </div>
     </ng-container>
-    <!-- Template for blank day boxes -->
+
     <ng-template #blankDay>
       <div class="blank"></div>
     </ng-template>
