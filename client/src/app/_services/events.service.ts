@@ -130,7 +130,7 @@ export class EventsService {
     return this.http.get<Event[]>(this.baseUrl + 'event', this.getHttpOptions());
   }
 
-  getEvent(id: number) {
+  getEventById(id: string) {
     return this.http.get<Event>(this.baseUrl + 'event/' + id, this.getHttpOptions());
   }
 
