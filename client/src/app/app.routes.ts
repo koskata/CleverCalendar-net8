@@ -7,6 +7,7 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
 import { EventCreateModalComponent } from './events/event-create-modal/event-create-modal.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
         children: [
             { path: 'events', component: EventListComponent, canActivate: [authGuard] },
             { path: 'events/liked', component: EventLikedComponent },
+            { path: 'events/details/:id', component: EventDetailsComponent}
         ]
     },
     {path: 'errors', component: TestErrorComponent},
