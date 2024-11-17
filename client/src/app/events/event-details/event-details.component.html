@@ -1,0 +1,54 @@
+<!-- <div class="eventDetailsContent">
+    <form #eventDetailsForm="ngForm">
+        <h2 class="text-center">Event Details<span style="font-size: 0.8em; margin-left: 0.5em;">🎞</span></h2>
+        <hr>
+        <div class="mb-3 form-floating">
+            <div class="">
+                <input type="text" name="name" [(ngModel)]="model.name" placeholder="Name" required minlength="2" maxlength="45" #name="ngModel">
+            </div>
+        </div>
+    </form>
+</div> -->
+
+<div class="eventDetailsContent" *ngIf="event">
+    <h2 class="text-center">Event Details<span style="font-size: 0.8em; margin-left: 0.5em;">🎞</span></h2>
+    <hr class="mb-5">
+    <div class="">
+        <!-- <h3>{{ event.name }}</h3>
+        <p><strong>Date:</strong> {{ event.start | date: 'fullDate' }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p> -->
+        <div class="row">
+            <div class="col-8">
+                <div class="card text-center mb-5">
+                    <div class="card-header">
+                        <div>
+                            <h1>{{event.name}}</h1>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        
+                        <div>
+                            <h5 style="font-style: italic;">{{event.start | date: 'medium'}} - {{event.end | date: 'medium'}}</h5>
+                        </div>
+                        <div>
+                            <h5>{{event.location}}</h5>
+                        </div>
+                    </div>
+                    <!-- <div class="card-footer">
+                        
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="btn-group d-flex">
+        <button class="btn btn-success">Join</button>
+    </div>
+</div>
+
+
+
+
+
