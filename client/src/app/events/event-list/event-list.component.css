@@ -39,13 +39,12 @@
 .events {
     display: flex;
     flex-direction: column;
-    /* flex-grow: 1; */
     overflow-y: auto;
+    gap: 2.5px;
 }
 
 .events::-webkit-scrollbar {
     display: none;
-    /* Chrome, Safari, Opera */
 }
 
 
@@ -54,6 +53,9 @@
     background-color: transparent;
     border: none;
 }
+
+
+
 
 /* ------------- */
 
