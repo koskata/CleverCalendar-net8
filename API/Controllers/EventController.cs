@@ -24,13 +24,12 @@ public class EventController (CleverCalendarContext context, IEventService _even
         return events;
     }
 
-    // Test action
+
     [Authorize]
-    [HttpGet("{id:string}")]
-    public async Task<ActionResult<Event>> GetEvent(string id)
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Event>> GetEvent(int id)
     {
-        int realId = int.Parse(id);
-        var ev = await context.Events.FirstOrDefaultAsync(x => x.Id == realId);
+        var ev = await context.Events.FirstOrDefaultAsync(x => x.Id == id);
 
         if (ev == null)
         {

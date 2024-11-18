@@ -108,8 +108,6 @@ export class EventsService {
     const year = monthYear;
     const month = monthIndex;
 
-    console.log(year);
-
     const firstDayOfMonth = new Date(year, month, 1);
     const firstDayOfWeek = firstDayOfMonth.getDay();
 
@@ -130,7 +128,7 @@ export class EventsService {
     return this.http.get<Event[]>(this.baseUrl + 'event', this.getHttpOptions());
   }
 
-  getEventById(id: string) {
+  getEventById(id: number) {
     return this.http.get<Event>(this.baseUrl + 'event/' + id, this.getHttpOptions());
   }
 
