@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class EventDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private eventService = inject(EventsService);
+  eventCreatorName: string = '';
   event: any;
 
   ngOnInit(): void {
@@ -29,8 +30,7 @@ export class EventDetailsComponent implements OnInit {
   fetchEventDetails(id: number): void {
     this.eventService.getEventById(id).subscribe(event => {
       this.event = event;
+      this.eventCreatorName = event.creatorName;
     });
   }
-
-
 }
