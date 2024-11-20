@@ -85,7 +85,7 @@ export class EventsService {
     }
   }
 
-  setMonthEmoticons(monthIndex: number): {monthName: string, monthEmoticon: string} {
+  setMonthEmoticons(monthIndex: number): { monthName: string, monthEmoticon: string } {
     const monthNames = [
       "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
@@ -94,11 +94,11 @@ export class EventsService {
       "❄️", "💖", "🌱", "🌷", "🌞", "🌴",
       "🌊", "🍉", "🍂", "🎃", "🍁", "🎄"
     ];
-  
+
     // Use the provided monthIndex to get the correct month name and emoticon
     const monthName = monthNames[monthIndex];
-    const monthEmoticon = monthEmoticons[monthIndex]; 
-  
+    const monthEmoticon = monthEmoticons[monthIndex];
+
     return { monthName, monthEmoticon };
   }
 
@@ -129,7 +129,7 @@ export class EventsService {
   }
 
   getEventById(id: number) {
-    return this.http.get<Event>(this.baseUrl + 'event/' + id, this.getHttpOptions());
+    return this.http.get<{ id: number, name: string, start: Date, end: Date, location: string, creatorName: string }>(this.baseUrl + 'event/' + id, this.getHttpOptions());
   }
 
   getHttpOptions() {
