@@ -11,13 +11,13 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers;
 
 
-public class EventController (CleverCalendarContext context, IEventService _eventService) : BaseApiController
+public class EventController(CleverCalendarContext context, IEventService _eventService) : BaseApiController
 {
 
     private readonly IEventService eventService = _eventService;
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Event>>> GetEvents() 
+    public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
     {
         var events = await context.Events.ToListAsync();
 
@@ -27,27 +27,48 @@ public class EventController (CleverCalendarContext context, IEventService _even
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Event>> GetEvent(int id)
+    public async Task<ActionResult<EventDetailsDto>> GetEvent(int id)
     {
-        var ev = await context.Events.FirstOrDefaultAsync(x => x.Id == id);
+        var ev = await context.Events
+        .FirstOrDefaultAsync(x => x.Id == id);
 
         if (ev == null)
         {
             return NotFound();
         }
 
-        return ev;
+        string creatorName = await eventService.GetEventCreatorNameAsync(ev.UserId);
+
+        return new EventDetailsDto
+        {
+            Id = ev.Id,
+            Name = ev.Name,
+            Start = ev.Start,
+            End = ev.End,
+            Location = ev.Location,
+            CreatorName = creatorName
+        };
     }
+
+    // [Authorize]
+    // [HttpGet("getEventCreatorName/{id:Guid}")]
+    // public async Task<ActionResult<string>> GetEventCreatorName(Guid id) {
+    //     string name = await eventService.GetEventCreatorNameAsync(id);
+    //     return name;
+    // }
+
 
     [Authorize]
     [HttpPost("createEvent")]
-    public async Task<ActionResult<EventDto>> CreateEvent(EventDto eventDto) {
-        
+    public async Task<ActionResult<EventDto>> CreateEvent(EventDto eventDto)
+    {
+
         string userId = User.GetUserId();
 
         var eventModel = await eventService.CreateEventAsync(eventDto, userId);
 
-        return new EventDto() {
+        return new EventDto()
+        {
             Name = eventModel.Name,
             Start = eventModel.Start.ToString(),
             End = eventModel.End.ToString(),
@@ -58,7 +79,8 @@ public class EventController (CleverCalendarContext context, IEventService _even
 
     [Authorize]
     [HttpGet("getAllEventCategories")]
-    public async Task<ActionResult<List<EventCategoryDto>>> GetAllEventCategories() {
+    public async Task<ActionResult<List<EventCategoryDto>>> GetAllEventCategories()
+    {
         var eventCategories = await eventService.GetAllEventCategoriesAsync();
 
         return eventCategories;
