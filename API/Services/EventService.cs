@@ -14,7 +14,8 @@ public class EventService(CleverCalendarContext _context) : IEventService
 
     public async Task<Event> CreateEventAsync(EventDto eventDto, string userId)
     {
-        var eventModel = new Event() {
+        var eventModel = new Event()
+        {
             Name = eventDto.Name,
             Start = DateTime.Parse(eventDto.Start),
             End = DateTime.Parse(eventDto.End),
@@ -35,7 +36,8 @@ public class EventService(CleverCalendarContext _context) : IEventService
 
     public async Task<List<EventCategoryDto>> GetAllEventCategoriesAsync()
     {
-        var eventCategories = await context.EventCategories.Select(x => new EventCategoryDto() {
+        var eventCategories = await context.EventCategories.Select(x => new EventCategoryDto()
+        {
             Id = x.Id,
             Name = x.Name,
             Color = x.Color,
@@ -43,5 +45,20 @@ public class EventService(CleverCalendarContext _context) : IEventService
         }).ToListAsync();
 
         return eventCategories;
+    }
+
+    public async Task<string> GetEventCreatorNameAsync(Guid id)
+    {
+        var user = await context.Users
+        .Select(x => new UserDetailsDto() {
+            Id = x.Id,
+            Name = x.Name
+        })
+        .FirstOrDefaultAsync(x => x.Id == id);
+
+        string name = user.Name;
+
+        return name;
+
     }
 }
