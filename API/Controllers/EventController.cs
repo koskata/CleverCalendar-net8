@@ -46,17 +46,10 @@ public class EventController(CleverCalendarContext context, IEventService _event
             Start = ev.Start,
             End = ev.End,
             Location = ev.Location,
-            CreatorName = creatorName
+            CreatorName = creatorName,
+            CategoryId = ev.CategoryId
         };
     }
-
-    // [Authorize]
-    // [HttpGet("getEventCreatorName/{id:Guid}")]
-    // public async Task<ActionResult<string>> GetEventCreatorName(Guid id) {
-    //     string name = await eventService.GetEventCreatorNameAsync(id);
-    //     return name;
-    // }
-
 
     [Authorize]
     [HttpPost("createEvent")]
