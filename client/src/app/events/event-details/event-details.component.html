@@ -1,34 +1,47 @@
 <div class="eventDetailsContent" *ngIf="event">
     <h2 class="text-center">Event Details<span style="font-size: 0.8em; margin-left: 0.5em;">🎞</span></h2>
     <hr class="mb-5">
-    <div class="">
-        <div class="row  mb-5">
-            <div class="col-12">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <div>
-                            <h1>{{event.name}}</h1>
-                        </div>
-                    </div>
-                    <div class="card-body">
 
+    <div class="ag-format-container">
+        <div class="ag-courses_box">
+
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div [ngStyle]="{'background-color': eventService.getBackgroundColor(event.categoryId)}" class="ag-courses-item_bg"></div>
+
+                    <div class="ag-courses-item_title">
+                        {{event.name}}
+                    </div>
+
+                    <div class="ag-courses-item_creator">
+                        <b>Creator:</b> {{eventCreatorName}}
+                    </div>
+
+                    <div class="ag-courses-item_location">
+                        <b>Location:</b> {{event.location}}
+                    </div>
+
+                    <div class="ag-courses-item_date-box">
                         <div>
-                            <h5 style="font-style: italic;">{{event.start | date: 'medium'}} - {{event.end | date:
-                                'medium'}}</h5>
+                            Start:
+                            <span class="ag-courses-item_date">
+                                {{event.start | date: 'EEE, dd MMM YYYY HH:mm'}}
+                            </span>
                         </div>
                         <div>
-                            <h5>{{event.location}}</h5>
+                            End:
+                            <span class="ag-courses-item_date">
+                                {{event.end | date: 'EEE, dd MMM YYYY HH:mm'}}
+                            </span>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <h5>Created by: {{eventCreatorName}}</h5>
+
+                    <!-- Popup element -->
+                    <div class="popup">
+                        Join
                     </div>
-                </div>
+                </a>
             </div>
         </div>
-    </div>
-
-    <div class="btn-group d-flex">
-        <button class="btn btn-success">Join</button>
     </div>
 </div>
