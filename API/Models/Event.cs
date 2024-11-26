@@ -6,6 +6,11 @@ namespace API.Models;
 
 public class Event
 {
+    public Event()
+    {
+        EventsParticipants = new HashSet<EventParticipant>();
+    }
+
     [Key]
     [Required]
     public int Id { get; set; }
@@ -32,4 +37,6 @@ public class Event
 
     [ForeignKey(nameof(CategoryId))]
     public EventCategory Category { get; set; } = null!;
+
+    public virtual ICollection<EventParticipant> EventsParticipants { get; set; } = null!;
 }
