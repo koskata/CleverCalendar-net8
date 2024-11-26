@@ -6,7 +6,7 @@
         <div class="ag-courses_box">
 
             <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link">
+                <a (click)="joinEvent()" class="ag-courses-item_link">
                     <div [ngStyle]="{'background-color': eventService.getBackgroundColor(event.categoryId)}" class="ag-courses-item_bg"></div>
 
                     <div class="ag-courses-item_title">

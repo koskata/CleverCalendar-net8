@@ -56,9 +56,17 @@ public class EventService(CleverCalendarContext _context) : IEventService
         })
         .FirstOrDefaultAsync(x => x.Id == id);
 
-        string name = user.Name;
+        if (user is not null)
+        {
+            return user.Name;
+        }
 
-        return name;
+        return "";
 
     }
+
+    // public Task JoinEventAsync(string userId)
+    // {
+        
+    // }
 }

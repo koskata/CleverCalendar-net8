@@ -10,4 +10,6 @@ public interface IEventService
     Task<API.Models.Event> CreateEventAsync(EventDto eventDto, string userId);
 
     Task<string> GetEventCreatorNameAsync(Guid id);
+
+    // Task JoinEventAsync(string userId);
 }

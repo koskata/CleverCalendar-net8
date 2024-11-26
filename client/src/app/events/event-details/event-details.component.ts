@@ -31,7 +31,11 @@ export class EventDetailsComponent implements OnInit {
     this.eventService.getEventById(id).subscribe(event => {
       this.event = event;
       this.eventCreatorName = event.creatorName;
-      console.log(event.categoryId);
     });
+  }
+
+  joinEvent() {
+    
+
   }
 }
