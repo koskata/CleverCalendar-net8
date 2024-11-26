@@ -12,6 +12,8 @@ public class CleverCalendarContext(DbContextOptions options) : DbContext(options
 
     public DbSet<EventCategory> EventCategories { get; set; }
 
+    public DbSet<EventParticipant> EventsParticipants { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Event>()
@@ -19,6 +21,9 @@ public class CleverCalendarContext(DbContextOptions options) : DbContext(options
                 .WithMany(x => x.Events)
                 .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<EventParticipant>()
+                .HasKey(x => new { x.EventId, x.UserId } );
 
         base.OnModelCreating(modelBuilder);
     }
