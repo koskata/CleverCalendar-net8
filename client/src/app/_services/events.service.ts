@@ -124,12 +124,16 @@ export class EventsService {
     return this.daysInMonth;
   }
 
+  joinEventByUserId() {
+
+  }
+
   getEvents() {
     return this.http.get<Event[]>(this.baseUrl + 'event', this.getHttpOptions());
   }
 
   getEventById(id: number) {
-    return this.http.get<{ id: number, name: string, start: Date, end: Date, location: string, creatorName: string, categoryId: number }>(this.baseUrl + 'event/' + id, this.getHttpOptions());
+    return this.http.get<{ id: number, name: string, start: Date, end: Date, location: string, creatorName: string, categoryId: number, currentUserId: string }>(this.baseUrl + 'event/' + id, this.getHttpOptions());
   }
 
   getHttpOptions() {

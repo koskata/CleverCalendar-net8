@@ -39,6 +39,8 @@ public class EventController(CleverCalendarContext context, IEventService _event
 
         string creatorName = await eventService.GetEventCreatorNameAsync(ev.UserId);
 
+        string currentUserId = User.GetUserId();
+
         return new EventDetailsDto
         {
             Id = ev.Id,
@@ -47,7 +49,8 @@ public class EventController(CleverCalendarContext context, IEventService _event
             End = ev.End,
             Location = ev.Location,
             CreatorName = creatorName,
-            CategoryId = ev.CategoryId
+            CategoryId = ev.CategoryId,
+            CurrentUserId = currentUserId
         };
     }
 
@@ -78,4 +81,12 @@ public class EventController(CleverCalendarContext context, IEventService _event
 
         return eventCategories;
     }
+
+    // [Authorize]
+    // [HttpPost("joinEvent")]
+    // public async Task<ActionResult> JoinEvent() {
+    //     string userId = User.GetUserId();
+
+    //     return null;
+    // }
 }

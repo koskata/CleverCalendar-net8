@@ -11,4 +11,6 @@ public class EventDetailsDto
     public string? Location { get; set; }
     public string CreatorName { get; set; } = string.Empty;
     public int CategoryId { get; set; }
+    public string CurrentUserId { get; set; } = string.Empty;
+
 }
