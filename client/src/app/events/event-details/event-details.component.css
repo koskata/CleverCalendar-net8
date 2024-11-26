@@ -28,14 +28,13 @@ body {
 }
 
 .ag-courses_item {
-  /* -ms-flex-preferred-size: calc(33.33333% - 30px); */
-  /* flex-basis: calc(33.33333% - 30px); */
   width: 60em;
   margin: 0 15px 30px;
 
   overflow: hidden;
 
   border-radius: 28px;
+  
 }
 
 .ag-courses-item_link {
@@ -44,7 +43,6 @@ body {
   background-color: #121212;
   text-decoration: none;
   overflow: hidden;
-
   position: relative;
 }
 
@@ -125,7 +123,7 @@ body {
   top: -75px;
   right: -75px;
 
-  border-radius: 50%;
+  border-radius: 40%;
 
   -webkit-transition: all .5s ease;
   -o-transition: all .5s ease;
@@ -145,7 +143,7 @@ body {
   color: white;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 20px 40px;
-  border-radius: 10px;
+  border-radius: 65px;
   text-align: center;
   z-index: 10;
 
@@ -163,46 +161,11 @@ body {
 .ag-courses-item_creator, 
 .ag-courses-item_location, 
 .ag-courses-item_date-box {
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Subtle text shadow for better contrast */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .ag-courses-item_link {
-  background-color: rgba(18, 18, 18, 0.95); /* Slightly transparent background for better readability */
-  position: relative; /* Ensure popup stays positioned relative to the button */
+  background-color: rgba(18, 18, 18, 0.95);
+  position: relative;
   overflow: hidden;
 }
-
-/* @media only screen and (max-width: 979px) {
-    .ag-courses_item {
-      -ms-flex-preferred-size: calc(50% - 30px);
-      flex-basis: calc(50% - 30px);
-    }
-    .ag-courses-item_title {
-      font-size: 24px;
-    }
-  }
-  
-  @media only screen and (max-width: 767px) {
-    .ag-format-container {
-      width: 96%;
-    }
-  
-  }
-  @media only screen and (max-width: 639px) {
-    .ag-courses_item {
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-    }
-    .ag-courses-item_title {
-      min-height: 72px;
-      line-height: 1;
-  
-      font-size: 24px;
-    }
-    .ag-courses-item_link {
-      padding: 22px 40px;
-    }
-    .ag-courses-item_date-box {
-      font-size: 16px;
-    }
-  } */
