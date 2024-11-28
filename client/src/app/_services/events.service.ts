@@ -124,8 +124,9 @@ export class EventsService {
     return this.daysInMonth;
   }
 
-  joinEventByUserId() {
-
+  joinEvent(model: any) {
+    console.log(model);
+    return this.http.post(this.baseUrl + 'event/joinEvent' + model, this.getHttpOptions());
   }
 
   getEvents() {
@@ -137,6 +138,7 @@ export class EventsService {
   }
 
   getHttpOptions() {
+    console.log(this.accountService.currentUser()?.name);
     return {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.accountService.currentUser()?.token}`

@@ -35,7 +35,12 @@ export class EventDetailsComponent implements OnInit {
   }
 
   joinEvent() {
-    
-
+    console.log('Joining');
+    console.log(this.event);
+    this.eventService.joinEvent(this.event).subscribe({
+      next: response => {
+        console.log(response);
+      },
+    });
   }
 }
