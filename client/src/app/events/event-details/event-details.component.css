@@ -44,6 +44,7 @@ body {
   text-decoration: none;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
 .ag-courses-item_link:hover,
