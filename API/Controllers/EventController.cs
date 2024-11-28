@@ -82,11 +82,17 @@ public class EventController(CleverCalendarContext context, IEventService _event
         return eventCategories;
     }
 
-    // [Authorize]
-    // [HttpPost("joinEvent")]
-    // public async Task<ActionResult> JoinEvent() {
-    //     string userId = User.GetUserId();
+    [Authorize]
+    [HttpPost("joinEvent")]
+    public async Task<ActionResult<EventParticipantJoinDto>> JoinEvent(EventDetailsDto eventModel)
+    {
+        string userId = User.GetUserId();
 
-    //     return null;
-    // }
+        var eventParticipantModel = await eventService.JoinEventAsync(userId, eventModel);
+
+        return new EventParticipantJoinDto {
+            EventId = eventParticipantModel.EventId,
+            UserId = eventParticipantModel.UserId.ToString()
+        };
+    }
 }
