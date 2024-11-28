@@ -4,6 +4,7 @@ using API.Data;
 using API.DTOs;
 using API.Interfaces.Event;
 using API.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Services;
@@ -65,8 +66,29 @@ public class EventService(CleverCalendarContext _context) : IEventService
 
     }
 
-    // public Task JoinEventAsync(string userId)
-    // {
-        
-    // }
+    public async Task<EventParticipant> JoinEventAsync(string userId, EventDetailsDto eventModel)
+    {
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id.ToString() == userId);
+
+        // if (user is null)
+        // {
+        //     return null;
+        // }
+
+        // if (await context.EventsParticipants.AnyAsync(x => x.UserId.ToString() == userId)
+        //     && await context.EventsParticipants.AnyAsync(x => x.EventId == eventModel.Id))
+        // {
+        //     return null;
+        // }
+
+        var eventParticipantModel = new EventParticipant() {
+            EventId = eventModel.Id,
+            UserId = Guid.Parse(userId)
+        };
+
+        await context.EventsParticipants.AddAsync(eventParticipantModel);
+        await context.SaveChangesAsync();
+
+        return eventParticipantModel;
+    }
 }
