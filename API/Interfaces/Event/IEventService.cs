@@ -1,5 +1,6 @@
 using System;
 using API.DTOs;
+using API.Models;
 
 namespace API.Interfaces.Event;
 
@@ -11,5 +12,5 @@ public interface IEventService
 
     Task<string> GetEventCreatorNameAsync(Guid id);
 
-    // Task JoinEventAsync(string userId);
+    Task<EventParticipant> JoinEventAsync(string userId, EventDetailsDto eventModel);
 }
