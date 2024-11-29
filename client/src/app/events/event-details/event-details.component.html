@@ -7,7 +7,8 @@
 
             <div class="ag-courses_item">
                 <a (click)="joinEvent()" class="ag-courses-item_link">
-                    <div [ngStyle]="{'background-color': eventService.getBackgroundColor(event.categoryId)}" class="ag-courses-item_bg"></div>
+                    <div [ngStyle]="{'background-color': eventService.getBackgroundColor(event.categoryId)}"
+                        class="ag-courses-item_bg"></div>
 
                     <div class="ag-courses-item_title">
                         {{event.name}}
@@ -44,4 +45,13 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <button (click)="modalToggle()" class="seeEventParticipantsBtn p-4 paginationBtn"><b>See the
+                participants</b></button>
+    </div>
 </div>
+
+@if (showModal) {
+<app-event-joined-participants-modal (closeModal)="closeModal($event)"></app-event-joined-participants-modal>
+}

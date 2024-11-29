@@ -4,11 +4,12 @@ import { Event } from '../../_models/event';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../_services/events.service';
 import { CommonModule } from '@angular/common';
+import { EventJoinedParticipantsModalComponent } from "../../event-joined-participants-modal/event-joined-participants-modal.component";
 
 @Component({
   selector: 'app-event-details',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, EventJoinedParticipantsModalComponent],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })
@@ -17,6 +18,7 @@ export class EventDetailsComponent implements OnInit {
   eventService = inject(EventsService);
   eventCreatorName: string = '';
   event: any;
+  showModal = false;
 
   ngOnInit(): void {
     const eventId = this.route.snapshot.paramMap.get('id')
@@ -34,13 +36,28 @@ export class EventDetailsComponent implements OnInit {
     });
   }
 
+  modalToggle() {
+    this.showModal = !this.showModal;
+  }
+
+  closeModal(event: boolean) {
+    this.showModal = event;
+  }
+
   joinEvent() {
-    console.log('Joining');
-    console.log(this.event);
-    this.eventService.joinEvent(this.event).subscribe({
-      next: response => {
-        console.log(response);
+    console.log(this.event.id);
+    if (!this.event || !this.event.id) {
+      console.error("Event details are missing.");
+      return;
+    }
+
+    this.eventService.joinEvent(this.event.id).subscribe({
+      next: (response) => {
+        console.log("Successfully joined the event:", response);
       },
+      error: (error) => {
+        console.error("Error joining the event:", error);
+      }
     });
   }
 }
