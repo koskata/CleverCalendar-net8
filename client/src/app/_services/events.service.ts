@@ -5,6 +5,7 @@ import { AccountService } from './account.service';
 import { Event } from '../_models/event';
 import { Day } from '../_models/day';
 import { EventCategory } from '../_models/eventCategory';
+import { EventParticipant } from '../_models/eventParticipant';
 
 @Injectable({
   providedIn: 'root'
@@ -124,9 +125,8 @@ export class EventsService {
     return this.daysInMonth;
   }
 
-  joinEvent(model: any) {
-    console.log(model);
-    return this.http.post(this.baseUrl + 'event/joinEvent' + model, this.getHttpOptions());
+  joinEvent(eventId: number) {
+    return this.http.post(this.baseUrl + 'event/joinEvent', { eventId }, this.getHttpOptions());
   }
 
   getEvents() {
@@ -137,8 +137,11 @@ export class EventsService {
     return this.http.get<{ id: number, name: string, start: Date, end: Date, location: string, creatorName: string, categoryId: number, currentUserId: string }>(this.baseUrl + 'event/' + id, this.getHttpOptions());
   }
 
+  getEventsParticipants() {
+    return this.http.get<EventParticipant[]>(this.baseUrl + 'eventParticipant', this.getHttpOptions());
+  }
+
   getHttpOptions() {
-    console.log(this.accountService.currentUser()?.name);
     return {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.accountService.currentUser()?.token}`
