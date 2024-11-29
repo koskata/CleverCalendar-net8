@@ -81,16 +81,22 @@ public class EventController(CleverCalendarContext context, IEventService _event
 
         return eventCategories;
     }
-
+    
     [Authorize]
     [HttpPost("joinEvent")]
-    public async Task<ActionResult<EventParticipantJoinDto>> JoinEvent(EventDetailsDto eventModel)
+    public async Task<ActionResult<EventParticipantJoinDto>> JoinEvent([FromBody] JoinEventDto joinEventDto)
     {
         string userId = User.GetUserId();
 
-        var eventParticipantModel = await eventService.JoinEventAsync(userId, eventModel);
+        var eventParticipantModel = await eventService.JoinEventAsync(userId, joinEventDto.EventId);
 
-        return new EventParticipantJoinDto {
+        if (eventParticipantModel == null)
+        {
+            return BadRequest("Unable to join the event. You might already be a participant.");
+        }
+
+        return new EventParticipantJoinDto
+        {
             EventId = eventParticipantModel.EventId,
             UserId = eventParticipantModel.UserId.ToString()
         };
