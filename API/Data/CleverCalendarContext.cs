@@ -23,7 +23,17 @@ public class CleverCalendarContext(DbContextOptions options) : DbContext(options
                 .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<EventParticipant>()
-                .HasKey(x => new { x.EventId, x.UserId } );
+                .HasKey(x => new { x.EventId, x.UserId });
+
+        modelBuilder.Entity<EventParticipant>()
+            .HasOne(ep => ep.Event)
+            .WithMany(e => e.EventsParticipants)
+            .HasForeignKey(ep => ep.EventId);
+
+        modelBuilder.Entity<EventParticipant>()
+            .HasOne(ep => ep.User)
+            .WithMany(u => u.EventsParticipants)
+            .HasForeignKey(ep => ep.UserId);
 
         base.OnModelCreating(modelBuilder);
     }
