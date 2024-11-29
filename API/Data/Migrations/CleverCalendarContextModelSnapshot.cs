@@ -55,7 +55,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.EventCategory", b =>
@@ -80,7 +80,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventCategories");
+                    b.ToTable("EventCategories", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.EventParticipant", b =>
@@ -95,7 +95,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EventsParticipants");
+                    b.ToTable("EventsParticipants", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.User", b =>
@@ -118,7 +118,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.Event", b =>
