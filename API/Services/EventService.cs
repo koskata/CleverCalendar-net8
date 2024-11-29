@@ -51,7 +51,8 @@ public class EventService(CleverCalendarContext _context) : IEventService
     public async Task<string> GetEventCreatorNameAsync(Guid id)
     {
         var user = await context.Users
-        .Select(x => new UserDetailsDto() {
+        .Select(x => new UserDetailsDto()
+        {
             Id = x.Id,
             Name = x.Name
         })
@@ -66,29 +67,37 @@ public class EventService(CleverCalendarContext _context) : IEventService
 
     }
 
-    public async Task<EventParticipant> JoinEventAsync(string userId, EventDetailsDto eventModel)
+    public async Task<List<EventParticipant>> GetEventsParticipantsAsync()
     {
+        var eventsParticipants = await context.EventsParticipants.ToListAsync();
+
+        return eventsParticipants;
+    }
+
+
+
+    public async Task<EventParticipant?> JoinEventAsync(string userId, int eventId)
+    {
+        // Check if the user exists
         var user = await context.Users.FirstOrDefaultAsync(x => x.Id.ToString() == userId);
+        if (user == null) return null;
 
-        // if (user is null)
-        // {
-        //     return null;
-        // }
+        // Check if the user is already a participant in the event
+        bool isAlreadyParticipant = await context.EventsParticipants
+            .AnyAsync(x => x.UserId.ToString() == userId && x.EventId == eventId);
 
-        // if (await context.EventsParticipants.AnyAsync(x => x.UserId.ToString() == userId)
-        //     && await context.EventsParticipants.AnyAsync(x => x.EventId == eventModel.Id))
-        // {
-        //     return null;
-        // }
+        if (isAlreadyParticipant) return null;
 
-        var eventParticipantModel = new EventParticipant() {
-            EventId = eventModel.Id,
+        // Add the user as a participant
+        var eventParticipant = new EventParticipant
+        {
+            EventId = eventId,
             UserId = Guid.Parse(userId)
         };
 
-        await context.EventsParticipants.AddAsync(eventParticipantModel);
+        await context.EventsParticipants.AddAsync(eventParticipant);
         await context.SaveChangesAsync();
 
-        return eventParticipantModel;
+        return eventParticipant;
     }
 }
