@@ -14,11 +14,137 @@
   
   .modal-content {
     background: white;
-    padding: 20px;
     border-radius: 8px;
     max-width: 500px;
     width: 100%;
   }
 
+  .modal-title {
+    font-size: 1.9em;
+    padding-top: 10px;
+  }
 
+  .modal-header {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 20px;
+  }
+
+
+  .modal-body {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+  }
+  /* Close button */
+
+  .close-container{
+    position: absolute;
+    right: 20px;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  }
+  
+  .leftright{
+    height: 4px;
+    width: 50px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: black;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    transition: all .3s ease-in;
+  }
+  
+  .rightleft{
+    height: 4px;
+    width: 50px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: black;
+    border-radius: 2px;
+    transform: rotate(-45deg);
+    transition: all .23s ease-in;
+  }
+  
+  label{
+    color: black;
+    font-family: Helvetica, Arial, sans-serif; 
+    font-size: .6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all .2s ease-in;
+    opacity: 0;
+  }
+  .close{
+    margin: 50px 0 0 5px;
+    position: absolute;
+  }
+  
+  .close-container:hover .leftright{
+    transform: rotate(-45deg);
+    background-color: red;
+  }
+  .close-container:hover .rightleft{
+    transform: rotate(45deg);
+    background-color: red;
+  }
+  .close-container:hover label{
+    opacity: 1;
+  }
+  
 /* Dropdown */
+
+.search-bar {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 18px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 5px 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table th, .styled-table td {
+  text-align: left;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.styled-table thead tr {
+  background-color: #007bff;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.styled-table th {
+  cursor: pointer;
+}
+
+.styled-table th:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
