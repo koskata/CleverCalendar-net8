@@ -6,6 +6,7 @@ import { Event } from '../_models/event';
 import { Day } from '../_models/day';
 import { EventCategory } from '../_models/eventCategory';
 import { EventParticipant } from '../_models/eventParticipant';
+import { User } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -137,8 +138,8 @@ export class EventsService {
     return this.http.get<{ id: number, name: string, start: Date, end: Date, location: string, creatorName: string, categoryId: number, currentUserId: string }>(this.baseUrl + 'event/' + id, this.getHttpOptions());
   }
 
-  getEventsParticipants() {
-    return this.http.get<EventParticipant[]>(this.baseUrl + 'eventParticipant', this.getHttpOptions());
+  getEventsParticipantsForTheGivenEvent(id: number) {
+    return this.http.get<User[]>(this.baseUrl + 'eventParticipant/' + id, this.getHttpOptions());
   }
 
   getHttpOptions() {
