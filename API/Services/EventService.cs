@@ -67,11 +67,12 @@ public class EventService(CleverCalendarContext _context) : IEventService
 
     }
 
-    public async Task<List<EventParticipant>> GetEventsParticipantsAsync()
+    public async Task<List<User>> GetParticipantsForTheGivenEventAsync(int eventId)
     {
-        var eventsParticipants = await context.EventsParticipants.ToListAsync();
+        var eventParticipants = await context.Users
+            .Where(x => x.EventsParticipants.Any(x => x.EventId == eventId)).ToListAsync();
 
-        return eventsParticipants;
+        return eventParticipants;
     }
 
 

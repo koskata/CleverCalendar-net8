@@ -14,5 +14,5 @@ public interface IEventService
 
     Task<EventParticipant?> JoinEventAsync(string userId, int eventId);
 
-    Task<List<EventParticipant>> GetEventsParticipantsAsync();
+    Task<List<User>> GetParticipantsForTheGivenEventAsync(int eventId);
 }
