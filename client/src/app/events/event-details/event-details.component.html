@@ -18,9 +18,12 @@
                         <b>Creator:</b> {{eventCreatorName}}
                     </div>
 
-                    <div class="ag-courses-item_location">
-                        <b>Location:</b> {{event.location}}
-                    </div>
+                    @if (event.location) {
+                        <div class="ag-courses-item_location">
+                            <b>Location:</b> {{event.location}}
+                        </div>
+                    }
+                    
 
                     <div class="ag-courses-item_date-box">
                         <div>
@@ -53,5 +56,5 @@
 </div>
 
 @if (showModal) {
-<app-event-joined-participants-modal (closeModal)="closeModal($event)"></app-event-joined-participants-modal>
+<app-event-joined-participants-modal [eventModel]="event" (closeModal)="closeModal($event)"></app-event-joined-participants-modal>
 }
