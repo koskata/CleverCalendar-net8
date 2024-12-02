@@ -1,5 +1,40 @@
 <div class="modal-background">
     <div class="modal-content">
-        <button class="btn btn-outline-danger me-2" (click)="close()" type="button">Cancel</button>
+        <div class="modal-header">
+            <h5 class="modal-title">Event Participants 🙋‍♂️</h5>
+            <a (click)="close()" type="button" class="close-container">
+                <div class="leftright"></div>
+                <div class="rightleft"></div>
+                <label class="close">close</label>
+            </a>
+        </div>
+        <hr>
+        <div class="modal-body text-center">
+            @if (eventParticipants.length > 0) {
+                <div class="search-bar">
+                    <input type="text" placeholder="Find participant..." [(ngModel)]="searchText" class="search-input">
+                </div>
+
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th (click)="sortBy('name')">Име <span *ngIf="sortField === 'name'">
+                                    {{ sortAsc ? '▲' : '▼' }}
+                                </span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let participant of filteredParticipants()">
+                            <td>{{ participant.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            @else {
+                <h1 class="mb-3">No participants yet!</h1>
+                <button (click)="joinEvent()" class="btn btn-success">Be the first! Join from here</button>
+            }
+            
+        </div>
     </div>
 </div>
