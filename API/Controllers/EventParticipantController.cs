@@ -10,11 +10,12 @@ public class EventParticipantController(IEventService _eventService) : BaseApiCo
 {
     private readonly IEventService eventService = _eventService;
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<EventParticipant>>> GetEventsParticipants()
+    [Authorize]
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<IEnumerable<User>>> GetEventsParticipantsForTheGivenEvent(int id)
     {
-        var eventsParticipants = await eventService.GetEventsParticipantsAsync();
+        var users = await eventService.GetParticipantsForTheGivenEventAsync(id);
 
-        return eventsParticipants;
+        return users;
     }
 }
