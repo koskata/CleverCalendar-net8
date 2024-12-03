@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../_services/events.service';
 import { CommonModule } from '@angular/common';
 import { EventJoinedParticipantsModalComponent } from "../../event-joined-participants-modal/event-joined-participants-modal.component";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-event-details',
@@ -14,6 +15,7 @@ import { EventJoinedParticipantsModalComponent } from "../../event-joined-partic
   styleUrl: './event-details.component.css'
 })
 export class EventDetailsComponent implements OnInit {
+  private toastr = inject(ToastrService);
   private route = inject(ActivatedRoute);
   eventService = inject(EventsService);
   eventCreatorName: string = '';
@@ -47,12 +49,13 @@ export class EventDetailsComponent implements OnInit {
   joinEvent() {
     console.log(this.event.id);
     if (!this.event || !this.event.id) {
-      console.error("Event details are missing.");
+      this.toastr.error("Event details are missing!", "Error");
       return;
     }
 
     this.eventService.joinEvent(this.event.id).subscribe({
       next: (response) => {
+        this.toastr.success("Successfully joined the event!", "Success");
         console.log("Successfully joined the event:", response);
       },
       error: (error) => {
