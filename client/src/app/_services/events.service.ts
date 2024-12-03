@@ -7,6 +7,7 @@ import { Day } from '../_models/day';
 import { EventCategory } from '../_models/eventCategory';
 import { EventParticipant } from '../_models/eventParticipant';
 import { User } from '../_models/user';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,12 @@ export class EventsService {
   daysInMonth: Day[] = [];
 
   createEvent(model: any) {
-    return this.http.post<Event>(this.baseUrl + 'event/createEvent', model, this.getHttpOptions());
+    return this.http.post<Event>(this.baseUrl + 'event/createEvent', model, this.getHttpOptions()).pipe(
+      tap(response => {
+        model.id = response.id;
+        console.log(model.id);
+      })
+    );
   }
 
   getCategoriesFromDatabase() {
