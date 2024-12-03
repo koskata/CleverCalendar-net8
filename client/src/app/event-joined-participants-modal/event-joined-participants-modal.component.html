@@ -10,31 +10,32 @@
         </div>
         <hr>
         <div class="modal-body text-center">
-            @if (eventParticipants.length > 0) {
-                <div class="search-bar">
-                    <input type="text" placeholder="Find participant..." [(ngModel)]="searchText" class="search-input">
-                </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Find participant..." [(ngModel)]="searchText" class="search-input">
+            </div>
 
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th (click)="sortBy('name')">Име <span *ngIf="sortField === 'name'">
-                                    {{ sortAsc ? '▲' : '▼' }}
-                                </span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let participant of filteredParticipants()">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th (click)="sortBy('name')">Име <span *ngIf="sortField === 'name'">
+                                {{ sortAsc ? '▲' : '▼' }}
+                            </span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let participant of filteredParticipants()">
+                        @if (eventModel.creatorName === participant.name) {
+                            <td>{{ participant.name }}<span style="font-weight: bold; margin-left: 0.7em;">(Creator)</span></td>
+                        }
+                        @else {
                             <td>{{ participant.name }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            }
-            @else {
-                <h1 class="mb-3">No participants yet!</h1>
-                <button (click)="joinEvent()" class="btn btn-success">Be the first! Join from here</button>
-            }
-            
+                        }
+                        
+                    </tr>
+                </tbody>
+            </table>
+
+
         </div>
     </div>
 </div>
