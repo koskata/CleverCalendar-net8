@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-event-create-modal',
@@ -17,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './event-create-modal.component.css'
 })
 export class EventCreateModalComponent implements OnInit {
+  private toastr = inject(ToastrService);
   private eventService = inject(EventsService);
   closeModal = output<boolean>();
   categories: EventCategory[] = [];
@@ -43,13 +45,34 @@ export class EventCreateModalComponent implements OnInit {
     this.eventService.createEvent(this.model).subscribe({
       next: response => {
         console.log(response);
+        this.model.id = response.id;
+        this.joinEvent();
         this.close();
+        this.toastr.success("Successfully created event!", "Success");
       },
     });
+    
   }
 
   close() {
     console.log('Close button clicked');
     this.closeModal.emit(false);
+  }
+
+  joinEvent() {
+    console.log(this.model.id);
+    if (!this.model || !this.model.id) {
+      console.error("Event details are missing.");
+      return;
+    }
+
+    this.eventService.joinEvent(this.model.id).subscribe({
+      next: (response) => {
+        console.log("Successfully joined the event:", response);
+      },
+      error: (error) => {
+        console.error("Error joining the event:", error);
+      }
+    });
   }
 }
