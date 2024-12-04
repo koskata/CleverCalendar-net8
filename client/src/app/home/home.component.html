@@ -1,12 +1,14 @@
 <div class="container mt-5">
-    <div style="text-align: center;">
+    <div>
 
     @if (!registerMode) {
-        <h1>Manage your tasks and appointments with our app!</h1>
-        <p style="font-weight: 300;" class="lead">View all events around you just by signing up!</p>
         <div class="text-center">
-            <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2">Register</button>
-            <button routerLink="/events/" class="btn btn-info btn-lg me-2">All Events</button>
+            <h1>Manage your tasks and appointments with our app!</h1>
+            <p style="font-weight: 300;" class="lead">View all events around you just by signing up!</p>
+            <div class="text-center">
+                <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2">Register</button>
+                <button routerLink="/events/" class="btn btn-info btn-lg me-2">All Events</button>
+            </div>
         </div>
     } @else {
         <div class="container">
