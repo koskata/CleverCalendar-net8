@@ -154,7 +154,7 @@ body {
 /* Show popup on hover */
 .ag-courses-item_link:hover .popup {
   display: block;
-  opacity: 1; /* Fully visible on hover */
+  opacity: 0.7; /* Fully visible on hover */
     transform: translate(130%, -50%) scale(0.6); /* Full size */
 }
 
