@@ -13,6 +13,12 @@
 .event-name {
     font-size: 0.9em;
     font-weight: 600;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .event-time {
