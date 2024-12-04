@@ -42,6 +42,13 @@ export class EventCreateModalComponent implements OnInit {
 
   create() {
     console.log('Form submitted');
+
+    console.log(this.model.start);
+    console.log(this.model.end);
+    if (this.model.start > this.model.end) {
+      this.toastr.error("Cannot create event with bigger start than end date!", "Error");
+    }
+
     this.eventService.createEvent(this.model).subscribe({
       next: response => {
         console.log(response);
