@@ -29,6 +29,9 @@
                     <div *ngIf="end.invalid && end.touched" class="text-danger">
                         <small>End date is required.</small>
                     </div>
+                    <div *ngIf="model.start && model.end && model.start > model.end" class="text-danger">
+                        <small>Start date cannot be greater than end date!</small>
+                    </div>
                 </div>
             </div>
 
@@ -53,7 +56,7 @@
             </div>
 
             <div class="form-group text-center mt-5">
-                <button class="btn btn-success me-2" type="submit" [disabled]="createEventForm.invalid">Create</button>
+                <button class="btn btn-success me-2" type="submit" [disabled]="createEventForm.invalid || (model.start && model.end && model.start > model.end)" >Create</button>
                 <button class="btn btn-outline-danger me-2" (click)="close()" type="button">Cancel</button>
             </div>
         </form>
