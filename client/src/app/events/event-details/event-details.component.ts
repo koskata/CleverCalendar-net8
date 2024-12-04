@@ -4,7 +4,7 @@ import { Event } from '../../_models/event';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../_services/events.service';
 import { CommonModule } from '@angular/common';
-import { EventJoinedParticipantsModalComponent } from "../../event-joined-participants-modal/event-joined-participants-modal.component";
+import { EventJoinedParticipantsModalComponent } from "../event-joined-participants-modal/event-joined-participants-modal.component";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

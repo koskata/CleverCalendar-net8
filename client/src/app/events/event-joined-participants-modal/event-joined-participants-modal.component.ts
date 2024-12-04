@@ -1,9 +1,7 @@
 import { Component, inject, Input, input, OnInit, output } from '@angular/core';
-import { EventParticipant } from '../_models/eventParticipant';
-import { EventsService } from '../_services/events.service';
-import { Event } from '../_models/event';
+import { EventsService } from '../../_services/events.service';
 import { NgFor, NgIf } from '@angular/common';
-import { User } from '../_models/user';
+import { User } from '../../_models/user';
 import { FormsModule } from '@angular/forms';
 
 @Component({
